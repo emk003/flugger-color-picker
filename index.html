@@ -52,9 +52,36 @@
         font-size: 1.8rem; /* Gør ikonerne større end standardtekst */
     }
 
-</style>
-<body>
+    /* styling på de 2 overskrifter */
+    .valg-ek{
+        display: flex; /* sætter dem på en række*/
+        justify-content: center; /* centrere elementerne*/
+        align-items: center; /* aligner elementeren med hinanden*/
+        gap: 2rem; /* mellemrummet mellem elementerne*/
+        background-color: white;
+        margin-top: 2rem; /*mellemrum til toppen*/
+    }
 
+    /* stregen imellem de 2 overskrifter*/
+    .opdeler-ek {
+        width: 1px; /* Tynd streg */
+        align-self: stretch; /* stregen strækker sig, i forhold til de andre elementers højde */
+        background-color: black; /* sort streg */
+    }
+
+    /* Understregning for den, der ikke er valgt */
+    .valgt-ek {
+        border-bottom: 2px solid #000; /* Sort understregning */
+        padding-bottom: 0.2rem; /* Giver lidt luft mellem tekst og streg */
+    }
+
+    .ikke-valgt-ek{
+        font-weight: normal; /* gør fonten mindre tyk*/
+    }
+
+</style>
+
+<body>
 <header>
     <div class="USP-bar-ek">
         <p>30 dages returret</p>
@@ -69,6 +96,12 @@
         </div>
     </div>
 </header>
+
+<div class="valg-ek">
+    <h2 class="valgt-ek">Vælg farve</h2>
+    <div class="opdeler-ek"></div>
+    <h2 class="ikke-valgt-ek">Farvelæg</h2>
+</div>
 
 
 </body>
