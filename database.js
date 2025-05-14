@@ -143,7 +143,7 @@ const colorData = [
         grundfarve: "Grøn",
         tone: "Mørk",
         type: "effekt",
-        tekstur: ""
+        tekstur: "fotos/tekstur3.png"
     },
     {
         id: "Kabric-02",
@@ -154,7 +154,7 @@ const colorData = [
         grundfarve: "Grå",
         tone: "Kold",
         type: "effekt",
-        tekstur: ""
+        tekstur: "fotos/tekstur3.png"
     },
     {
         id: "Kabric-03",
@@ -165,7 +165,7 @@ const colorData = [
         grundfarve: "Rød",
         tone: "Varm",
         type: "effekt",
-        tekstur: ""
+        tekstur: "fotos/tekstur3.png"
     },
     {
         id: "Kabric-04",
@@ -176,7 +176,7 @@ const colorData = [
         grundfarve: "Blå",
         tone: "Lys",
         type: "effekt",
-        tekstur: ""
+        tekstur: "fotos/tekstur3.png"
     },
     {
         id: "Kabric-05",
@@ -187,8 +187,9 @@ const colorData = [
         grundfarve: "Gul",
         tone: "Mørk",
         type: "effekt",
-        tekstur: ""
+        tekstur: "fotos/tekstur3.png"
     },
 
 
 ];
+

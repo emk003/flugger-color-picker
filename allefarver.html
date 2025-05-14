@@ -80,18 +80,86 @@
     font-weight: normal; /* gør fonten mindre tyk*/
   }
 
+     /* Søgning feltet */
+   .sogefelt {
+     display: flex; /* Bruger flexbox for at centrere indholdet */
+     align-items: center;
+     margin: 2rem 2rem 0; /* Tilføjer margin på top og bund */
+     padding: 1rem; /* Lægger lidt padding på inputfeltet */
+     Font-size: 1rem; /* Sætter fontstørrelsen */
+     width: 330px; /* Sætter bredden på inputfeltet */
+     border: 1px solid #000000; /* Definerer kantlinjen */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Skygge: x-offset y-offset blur-radius color */
+   }
+
+  /* Inputfeltet til søgning */
+  #sogInput {
+    font-size: 1.2rem; /* Sætter fontstørrelsen */
+    border: transparent;
+  }
+
+  .sogefelt i {
+    color: #000000; /* Farven på ikonet */
+    font-size: 1.2rem; /* Størrelsen på ikonet */
+    padding: 0.5rem;
+  }
+
+  /* Containeren der holder farvebokse */
+  .farve-container {
+    display: grid; /* Bruger grid layout til at arrangere farverne */
+    grid-template-columns: repeat(2, 1fr); /* Opretter 2 kolonner */
+    gap: 1rem; /* Sætter mellemrum mellem grid elementerne */
+    padding: 2rem; /* Tilføjer padding omkring containeren */
+  }
+
+  /* Styling af hver farveboks */
+  .farveboks {
+    position: relative; /* Absolut positionering af indhold inde i boksen */
+    overflow: hidden;
+  }
+
+  /* Farveboksens baggrund og størrelse */
+  .farve {
+    height: 100px; /* Højde på farveboksene */
+    background-size: cover; /* Baggrundsbilledet fylder hele boksen */
+    background-repeat: no-repeat; /* Forhindrer gentagelse af baggrundsbilledet */
+    background-position: center; /* Centrerer baggrundsbilledet */
+    background-blend-mode: multiply; /* Blending af farver */
+  }
+
+
+  /* Informationselementer under hver farveboks */
+  .info {
+    padding-top: 0.5rem; /* Lidt ekstra plads ovenfor */
+    background: white; /* Baggrundsfarve for infoen */
+    padding-bottom: 2rem; /* Tilføjer lidt ekstra plads i bunden */
+  }
+
+  .info h4 {
+    margin: 0 0 0.25rem; /* Margen for overskriften */
+    font-size: 1rem; /* Størrelse på overskriften */
+  }
+
+  .info p {
+    margin: 0; /* Ingen margin på paragrafen */
+    font-size: 0.875rem; /* Skriftstørrelse på teksten */
+    color: #555; /* Farve på teksten */
+  }
+
 
 </style>
 
 <body>
+<!-- Header med logo og ikoner -->
 <header>
   <div class="USP-bar-ek">
     <p>30 dages returret</p>
   </div>
 
   <div class="header-indhold-ek">
-    <img class="logo-ek" src="fotos/logo.png" alt="logo">
+    <img class="logo-ek" src="fotos/logo.png" alt="logo"> <!-- Logoet -->
     <div class="ikoner-ek">
+      <!-- Ikoner for søgning, kurv og menu -->
       <i class="fa-solid fa-magnifying-glass"></i>
       <i class="fa-solid fa-basket-shopping"></i>
       <i class="fa-solid fa-bars"></i>
@@ -99,14 +167,85 @@
   </div>
 </header>
 
+<!-- Sektion til at vælge farve -->
 <div class="valg-ek">
-  <h2 class="valgt-ek">Vælg farve</h2>
+  <h2 class="valgt-ek">Vælg farve</h2> <!-- Aktuel valgmulighed -->
   <div class="opdeler-ek"></div>
-  <h2 class="ikke-valgt-ek">Farvelæg</h2>
+  <h2 class="ikke-valgt-ek">Farvelæg</h2> <!-- Alternativt valg -->
 </div>
 
+<!-- Søgning felt -->
+<div class="sogefelt">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="text" id="sogInput" placeholder="Søg farver..."> <!-- Input til søgning -->
+</div>
 
-<script src="database.js"></script>
+<!-- Container der holder farverne -->
+<div class="farve-container" id="farveContainer"></div>
+
+<script src="database.js"></script> <!-- Importerer data fra database.js -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("farveContainer"); // Henter farve-containeren
+    const input = document.getElementById("sogInput"); // Henter søgefeltet
+
+    // Funktion der rendererer farverne baseret på data
+    function renderFarver(data) {
+      container.innerHTML = ""; // Tømmer containeren før render
+
+      data.forEach(farve => {
+        const boks = document.createElement("div"); // Opretter en boks for hver farve
+        boks.className = "farveboks"; // Giver boksen en klasse
+
+        const farveDiv = document.createElement("div"); // Opretter selve farveboks-div
+        farveDiv.className = "farve";
+        farveDiv.style.backgroundColor = farve.hex; // Sætter baggrundsfarven
+
+        // Hvis farven har en tekstur, tilføjes et baggrundsbillede
+        if (farve.type === "effekt" && farve.tekstur) {
+          farveDiv.style.backgroundImage = `url(fotos/tekstur3.png)`;
+        }
+
+        // Indpak farven i en wrapper
+        const farveWrapper = document.createElement("div");
+        farveWrapper.style.position = "relative";
+        farveWrapper.appendChild(farveDiv);
+
+        // Tilføj information om farven (navn og kode)
+        const info = document.createElement("div");
+        info.className = "info";
+        info.innerHTML = `
+            <h4>${farve.navn}</h4>
+            <p>${farve.kode}</p>
+          `;
+
+        boks.appendChild(farveWrapper); // Tilføj farve-wrapper
+        boks.appendChild(info); // Tilføj info
+        container.appendChild(boks); // Tilføj boksen til containeren
+      });
+    }
+
+    // Første rendering af farverne
+    renderFarver(colorData);
+
+    // Håndtering af søgeinput
+    input.addEventListener("input", function () {
+      const søgning = input.value.toLowerCase(); // Henter input og gør det småt
+      const filtreret = colorData.filter(f => {
+        return (
+                f.navn.toLowerCase().includes(søgning) ||
+                f.kode.toLowerCase().includes(søgning) ||
+                (f.grundfarve && f.grundfarve.toLowerCase().includes(søgning)) ||
+                (f.tone && f.tone.toLowerCase().includes(søgning)) ||
+                (f.farvekort && f.farvekort.toLowerCase().includes(søgning))
+        );
+      });
+
+      renderFarver(filtreret); // Rerender med de filtrerede farver
+    });
+  });
+
+</script>
 </body>
-
 </html>
