@@ -1,165 +1,249 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script> <!-- link til fontawesome m. ikoner-->
-  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- link til font fra google ( tre linjer )-->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><title>flügger</title>
+  <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>flügger</title>
   <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background-color: white;
+    }
+
+    header {
+      background-color: #fff;
+    }
+
+    .USP-bar-ek {
+      background-color: #363433;
+      padding: 0.5rem 0.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .header-indhold-ek {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: white;
+    }
+
+    .logo-ek {
+      max-width: 150px;
+      height: auto;
+    }
+
+    .ikoner-ek {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .valg-ek {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background-color: white;
+      margin-top: 2rem;
+    }
+
+    .opdeler-ek {
+      width: 1px;
+      align-self: stretch;
+      background-color: black;
+    }
+
+    .valgt-ek {
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.2rem;
+    }
+
+    .ikke-valgt-ek {
+      font-weight: normal;
+    }
+
+    h3{
+      margin: 2rem;
+      font-size: 2rem;
+    }
+
+    .sogefelt-ek {
+      display: flex;
+      align-items: center;
+      margin: 2rem 2rem 0;
+      padding: 1rem;
+      font-size: 1rem;
+      width: 330px;
+      border: 1px solid #000000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #sogInput-ek {
+      font-size: 1.2rem;
+      border: transparent;
+    }
+
+    .sogefelt-ek i {
+      color: #000000;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+    }
+
+    .farve-container-ek {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .farveboks-ek {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .farve-ek {
+      height: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-blend-mode: multiply;
+    }
+
+    .info-ek {
+      padding-top: 0.5rem;
+      background: white;
+      padding-bottom: 2rem;
+    }
+
+    .info-ek h4 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+    }
+
+    .info-ek p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    .info-top-ek {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tilfoej-knap-ek {
+      width: 30px;
+      height: 30px;
+      border: 1px solid black;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: white;
+      color: black;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .tilfoej-knap-ek.selected {
+      background: #E67E23;
+      color: black;
+      border: 1px solid #E67E23;
+    }
+
+    .ikon-ek {
+      font-size: 1.5rem;
+      font-weight: lighter;
+      color: black;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .tilfoej-knap-ek.selected .ikon-ek {
+      color: white;
+      transform: scale(0.8);
+    }
+
+    .valg-popup-ek {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .valgte-farver-ek {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .valg-popup-ek.hidden {
+      display: none;
+    }
+
+    .valgte-farver-ek .farve-preview-ek {
+      width: 50px;
+      height: 50px;
+      position: relative;
+    }
+
+    .farve-preview-ek .fjern-knap-ek {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: white;
+      border: 1px solid #000;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      line-height: 16px;
+    }
+
+    #tilfoejListe-ek {
+      height: 50px;
+      padding: 0 1.5rem;
+      background-color: #1E32DA;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      align-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 
-<style>
-  body{
-    margin: 0; /* fjerner mellemrum fra elementer til kanten af siden*/
-    font-family: "Inter", sans-serif;
-    background-color: white;
-  }
-
-  /* Hele headeren */
-  header{
-    background-color: #fff; /* Hvid baggrund for hele headeren */
-  }
-
-  /* USP-bar øverst */
-  .USP-bar-ek {
-    background-color: #363433; /* Lys grå baggrund */
-    padding: 0.5rem 0.5rem; /* Lidt indvendig luft omkring teksten */
-    text-align: center; /* Centrerer teksten vandret */
-    font-size: 0.9rem; /* Lidt mindre tekststørrelse end standard */
-    color: white; /* Mørk grå tekstfarve */
-  }
-
-  /* Container til logo og ikoner */
-  .header-indhold-ek {
-    display: flex; /* Lægger logo og ikoner vandret */
-    justify-content: space-between; /* Placerer logo til venstre, ikoner til højre */
-    align-items: center; /* Centrerer dem lodret */
-    padding: 1rem 2rem; /* Giver luft omkring indholdet */
-    background-color: white; /*baggrunds farve på header */
-  }
-
-  /* Logo-styling */
-  .logo-ek {
-    max-width: 150px; /* Begrænser logoets størrelse */
-    height: auto; /* Bevarer billedets proportioner */
-  }
-
-  /* Ikoncontainer */
-  .ikoner-ek {
-    display: flex; /* Viser ikonerne på en række */
-    gap: 1rem; /* Laver afstand mellem ikonerne */
-    font-size: 1.8rem; /* Gør ikonerne større end standardtekst */
-  }
-
-  /* styling på de 2 overskrifter */
-  .valg-ek{
-    display: flex; /* sætter dem på en række*/
-    justify-content: center; /* centrere elementerne*/
-    align-items: center; /* aligner elementeren med hinanden*/
-    gap: 2rem; /* mellemrummet mellem elementerne*/
-    background-color: white;
-    margin-top: 2rem; /*mellemrum til toppen*/
-  }
-
-  /* stregen imellem de 2 overskrifter*/
-  .opdeler-ek {
-    width: 1px; /* Tynd streg */
-    align-self: stretch; /* stregen strækker sig, i forhold til de andre elementers højde */
-    background-color: black; /* sort streg */
-  }
-
-  /* Understregning for den, der ikke er valgt */
-  .valgt-ek {
-    border-bottom: 2px solid #000; /* Sort understregning */
-    padding-bottom: 0.2rem; /* Giver lidt luft mellem tekst og streg */
-  }
-
-  .ikke-valgt-ek{
-    font-weight: normal; /* gør fonten mindre tyk*/
-  }
-
-     /* Søgning feltet */
-   .sogefelt {
-     display: flex; /* Bruger flexbox for at centrere indholdet */
-     align-items: center;
-     margin: 2rem 2rem 0; /* Tilføjer margin på top og bund */
-     padding: 1rem; /* Lægger lidt padding på inputfeltet */
-     Font-size: 1rem; /* Sætter fontstørrelsen */
-     width: 330px; /* Sætter bredden på inputfeltet */
-     border: 1px solid #000000; /* Definerer kantlinjen */
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Skygge: x-offset y-offset blur-radius color */
-   }
-
-  /* Inputfeltet til søgning */
-  #sogInput {
-    font-size: 1.2rem; /* Sætter fontstørrelsen */
-    border: transparent;
-  }
-
-  .sogefelt i {
-    color: #000000; /* Farven på ikonet */
-    font-size: 1.2rem; /* Størrelsen på ikonet */
-    padding: 0.5rem;
-  }
-
-  /* Containeren der holder farvebokse */
-  .farve-container {
-    display: grid; /* Bruger grid layout til at arrangere farverne */
-    grid-template-columns: repeat(2, 1fr); /* Opretter 2 kolonner */
-    gap: 1rem; /* Sætter mellemrum mellem grid elementerne */
-    padding: 2rem; /* Tilføjer padding omkring containeren */
-  }
-
-  /* Styling af hver farveboks */
-  .farveboks {
-    position: relative; /* Absolut positionering af indhold inde i boksen */
-    overflow: hidden;
-  }
-
-  /* Farveboksens baggrund og størrelse */
-  .farve {
-    height: 100px; /* Højde på farveboksene */
-    background-size: cover; /* Baggrundsbilledet fylder hele boksen */
-    background-repeat: no-repeat; /* Forhindrer gentagelse af baggrundsbilledet */
-    background-position: center; /* Centrerer baggrundsbilledet */
-    background-blend-mode: multiply; /* Blending af farver */
-  }
-
-
-  /* Informationselementer under hver farveboks */
-  .info {
-    padding-top: 0.5rem; /* Lidt ekstra plads ovenfor */
-    background: white; /* Baggrundsfarve for infoen */
-    padding-bottom: 2rem; /* Tilføjer lidt ekstra plads i bunden */
-  }
-
-  .info h4 {
-    margin: 0 0 0.25rem; /* Margen for overskriften */
-    font-size: 1rem; /* Størrelse på overskriften */
-  }
-
-  .info p {
-    margin: 0; /* Ingen margin på paragrafen */
-    font-size: 0.875rem; /* Skriftstørrelse på teksten */
-    color: #555; /* Farve på teksten */
-  }
-
-
-</style>
-
 <body>
-<!-- Header med logo og ikoner -->
 <header>
   <div class="USP-bar-ek">
     <p>30 dages returret</p>
   </div>
-
   <div class="header-indhold-ek">
-    <img class="logo-ek" src="fotos/logo.png" alt="logo"> <!-- Logoet -->
+    <img class="logo-ek" src="fotos/logo.png" alt="logo">
     <div class="ikoner-ek">
-      <!-- Ikoner for søgning, kurv og menu -->
       <i class="fa-solid fa-magnifying-glass"></i>
       <i class="fa-solid fa-basket-shopping"></i>
       <i class="fa-solid fa-bars"></i>
@@ -167,71 +251,135 @@
   </div>
 </header>
 
-<!-- Sektion til at vælge farve -->
 <div class="valg-ek">
-  <h2 class="valgt-ek">Vælg farve</h2> <!-- Aktuel valgmulighed -->
+  <h2 class="valgt-ek">Vælg farve</h2>
   <div class="opdeler-ek"></div>
-  <h2 class="ikke-valgt-ek">Farvelæg</h2> <!-- Alternativt valg -->
+  <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
 
-<!-- Søgning felt -->
-<div class="sogefelt">
+<h3>Alle farver</h3>
+
+<div class="sogefelt-ek">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="text" id="sogInput" placeholder="Søg farver..."> <!-- Input til søgning -->
+  <input type="text" id="sogInput-ek" placeholder="Søg farver...">
 </div>
 
-<!-- Container der holder farverne -->
-<div class="farve-container" id="farveContainer"></div>
+<div class="farve-container-ek" id="farveContainer-ek"></div>
 
-<script src="database.js"></script> <!-- Importerer data fra database.js -->
+<div id="valgPopup-ek" class="valg-popup-ek hidden">
+  <div id="valgteFarver-ek" class="valgte-farver-ek"></div>
+  <button id="tilfoejListe-ek">Tilføj</button>
+</div>
 
+<script src="database.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById("farveContainer"); // Henter farve-containeren
-    const input = document.getElementById("sogInput"); // Henter søgefeltet
+    const container = document.getElementById("farveContainer-ek");
+    const input = document.getElementById("sogInput-ek");
 
-    // Funktion der rendererer farverne baseret på data
+    const popup = document.getElementById("valgPopup-ek");
+    const valgteContainer = document.getElementById("valgteFarver-ek");
+    const tilfoejKnap = document.getElementById("tilfoejListe-ek");
+
+    let valgteFarver = [];
+
+    function visValgteFarver() {
+      valgteContainer.innerHTML = "";
+
+      if (valgteFarver.length === 0) {
+        popup.classList.add("hidden");
+        return;
+      }
+
+      popup.classList.remove("hidden");
+
+      valgteFarver.forEach(f => {
+        const preview = document.createElement("div");
+        preview.className = "farve-preview-ek";
+        preview.style.backgroundColor = f.hex;
+
+        const fjern = document.createElement("div");
+        fjern.className = "fjern-knap-ek";
+        fjern.textContent = "✕";
+
+        fjern.addEventListener("click", function () {
+          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode);
+          visValgteFarver();
+          renderFarver(colorData);
+        });
+
+        preview.appendChild(fjern);
+        valgteContainer.appendChild(preview);
+      });
+    }
+
     function renderFarver(data) {
-      container.innerHTML = ""; // Tømmer containeren før render
+      container.innerHTML = "";
 
       data.forEach(farve => {
-        const boks = document.createElement("div"); // Opretter en boks for hver farve
-        boks.className = "farveboks"; // Giver boksen en klasse
+        const boks = document.createElement("div");
+        boks.className = "farveboks-ek";
 
-        const farveDiv = document.createElement("div"); // Opretter selve farveboks-div
-        farveDiv.className = "farve";
-        farveDiv.style.backgroundColor = farve.hex; // Sætter baggrundsfarven
+        const farveDiv = document.createElement("div");
+        farveDiv.className = "farve-ek";
+        farveDiv.style.backgroundColor = farve.hex;
 
-        // Hvis farven har en tekstur, tilføjes et baggrundsbillede
         if (farve.type === "effekt" && farve.tekstur) {
           farveDiv.style.backgroundImage = `url(fotos/tekstur3.png)`;
         }
 
-        // Indpak farven i en wrapper
         const farveWrapper = document.createElement("div");
         farveWrapper.style.position = "relative";
         farveWrapper.appendChild(farveDiv);
 
-        // Tilføj information om farven (navn og kode)
         const info = document.createElement("div");
-        info.className = "info";
+        info.className = "info-ek";
         info.innerHTML = `
-            <h4>${farve.navn}</h4>
-            <p>${farve.kode}</p>
-          `;
+        <div class="info-top-ek">
+          <h4>${farve.navn}</h4>
+          <button class="tilfoej-knap-ek" aria-label="Tilføj farve">
+            <span class="ikon-ek">${valgteFarver.some(f => f.kode === farve.kode) ? "✔" : "+"}</span>
+          </button>
+        </div>
+        <p>${farve.kode}</p>
+      `;
 
-        boks.appendChild(farveWrapper); // Tilføj farve-wrapper
-        boks.appendChild(info); // Tilføj info
-        container.appendChild(boks); // Tilføj boksen til containeren
+        boks.appendChild(farveWrapper);
+        boks.appendChild(info);
+        container.appendChild(boks);
+
+        const knap = info.querySelector(".tilfoej-knap-ek");
+        const ikon = knap.querySelector(".ikon-ek");
+
+        if (valgteFarver.some(f => f.kode === farve.kode)) {
+          knap.classList.add("selected");
+          boks.style.backgroundColor = "#f0f0f0";
+        }
+
+        knap.addEventListener("click", function () {
+          const alleredeValgt = valgteFarver.some(f => f.kode === farve.kode);
+
+          if (alleredeValgt) {
+            valgteFarver = valgteFarver.filter(f => f.kode !== farve.kode);
+            knap.classList.remove("selected");
+            ikon.textContent = "+";
+            boks.style.backgroundColor = "transparent";
+          } else {
+            valgteFarver.push(farve);
+            knap.classList.add("selected");
+            ikon.textContent = "✔";
+            boks.style.backgroundColor = "#f0f0f0";
+          }
+
+          visValgteFarver();
+        });
       });
     }
 
-    // Første rendering af farverne
     renderFarver(colorData);
 
-    // Håndtering af søgeinput
     input.addEventListener("input", function () {
-      const søgning = input.value.toLowerCase(); // Henter input og gør det småt
+      const søgning = input.value.toLowerCase();
       const filtreret = colorData.filter(f => {
         return (
                 f.navn.toLowerCase().includes(søgning) ||
@@ -242,10 +390,10 @@
         );
       });
 
-      renderFarver(filtreret); // Rerender med de filtrerede farver
+      renderFarver(filtreret);
     });
   });
-
 </script>
 </body>
 </html>
+
