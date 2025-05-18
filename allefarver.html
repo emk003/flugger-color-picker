@@ -8,233 +8,265 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>flügger</title>
   <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background-color: white;
-    }
+  </head>
 
-    header {
-      background-color: #fff;
-    }
+<style>
+  /* Hele body-elementet: sæt margin til 0, brug skrifttype Inter, og baggrund som hvid */
+  body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: white;
+  }
 
-    .USP-bar-ek {
-      background-color: #363433;
-      padding: 0.5rem 0.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: white;
-    }
+  /* Headeren får hvid baggrund */
+  header {
+    background-color: #fff;
+  }
 
-    .header-indhold-ek {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: white;
-    }
+  /* Sort bjælke med USP (unik salgs-pointe) tekst */
+  .USP-bar-ek {
+    background-color: #363433;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+  }
 
-    .logo-ek {
-      max-width: 150px;
-      height: auto;
-    }
+  /* Indhold i header: logo og ikoner vises side om side */
+  .header-indhold-ek {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+  }
 
-    .ikoner-ek {
-      display: flex;
-      gap: 1rem;
-      font-size: 1.8rem;
-    }
+  /* Logoet: maks bredde 150px, og højden justeres automatisk */
+  .logo-ek {
+    max-width: 150px;
+    height: auto;
+  }
 
-    .valg-ek {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      background-color: white;
-      margin-top: 2rem;
-    }
+  /* Ikoner (søg, kurv, menu): vises i række med mellemrum */
+  .ikoner-ek {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.8rem;
+  }
 
-    .opdeler-ek {
-      width: 1px;
-      align-self: stretch;
-      background-color: black;
-    }
+  /* Topmenu til valg ("vælg farve" / "farvelæg") */
+  .valg-ek {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: white;
+    margin-top: 2rem;
+  }
 
-    .valgt-ek {
-      border-bottom: 2px solid #000;
-      padding-bottom: 0.2rem;
-    }
+  /* Lodret streg mellem valg */
+  .opdeler-ek {
+    width: 1px;
+    align-self: stretch;
+    background-color: black;
+  }
 
-    .ikke-valgt-ek {
-      font-weight: normal;
-    }
+  /* Den valgte sektion får understregning */
+  .valgt-ek {
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.2rem;
+  }
 
-    h3{
-      margin: 2rem;
-      font-size: 2rem;
-    }
+  /* Ikke-valgte er normal i stilen */
+  .ikke-valgt-ek {
+    font-weight: normal;
+  }
 
-    .sogefelt-ek {
-      display: flex;
-      align-items: center;
-      margin: 2rem 2rem 0;
-      padding: 1rem;
-      font-size: 1rem;
-      width: 330px;
-      border: 1px solid #000000;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+  /* Overskriften */
+  h3{
+    margin: 2rem;
+    font-size: 2rem;
+  }
 
-    #sogInput-ek {
-      font-size: 1.2rem;
-      border: transparent;
-    }
+  /* styling til søgefeltet */
+  .sogefelt-ek {
+    display: flex;
+    align-items: center;
+    margin: 2rem 2rem 0;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 330px;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-    .sogefelt-ek i {
-      color: #000000;
-      font-size: 1.2rem;
-      padding: 0.5rem;
-    }
+  /* Selve inputfeltet i søgningen */
+  #sogInput-ek {
+    font-size: 1.2rem;
+    border: transparent;
+  }
 
-    .farve-container-ek {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 2rem;
-    }
+  /* Ikonet i søgefeltet */
+  .sogefelt-ek i {
+    color: #000000;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
 
-    .farveboks-ek {
-      position: relative;
-      overflow: hidden;
-    }
+  /* Containeren hvor farverne vises som grid */
+  .farve-container-ek {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolonner */
+    gap: 1rem;
+    padding: 2rem;
+  }
 
-    .farve-ek {
-      height: 100px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-blend-mode: multiply;
-    }
+  /* Hver farveboks har position og skjuler overløb */
+  .farveboks-ek {
+    position: relative;
+    overflow: hidden;
+  }
 
-    .info-ek {
-      padding-top: 0.5rem;
-      background: white;
-      padding-bottom: 2rem;
-    }
+  /* Selve farvevisningen (den farvede firkant) */
+  .farve-ek {
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: multiply;
+  }
 
-    .info-ek h4 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-    }
+  /* Informationsfeltet under hver farve */
+  .info-ek {
+    padding-top: 0.5rem;
+    background: white;
+    padding-bottom: 2rem;
+  }
 
-    .info-ek p {
-      margin: 0;
-      font-size: 0.875rem;
-      color: #555;
-    }
+  /* navnet på farven i farvekortet */
+  .info-ek h4 {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+  }
 
-    .info-top-ek {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  /* farvekoden i farvekortet */
+  .info-ek p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #555;
+  }
 
-    .tilfoej-knap-ek {
-      width: 30px;
-      height: 30px;
-      border: 1px solid black;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: white;
-      color: black;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease;
-    }
+  /* Øverste infofelt med navn og knap */
+  .info-top-ek {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .tilfoej-knap-ek.selected {
-      background: #E67E23;
-      color: black;
-      border: 1px solid #E67E23;
-    }
+  /* Plus/tilføj-knappen i farvekortet */
+  .tilfoej-knap-ek {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: white;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
 
-    .ikon-ek {
-      font-size: 1.5rem;
-      font-weight: lighter;
-      color: black;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
+  /* Hvis farven er valgt: vis orange baggrund på tilføj ikonet */
+  .tilfoej-knap-ek.selected {
+    background: #E67E23;
+    color: black;
+    border: 1px solid #E67E23;
+  }
 
-    .tilfoej-knap-ek.selected .ikon-ek {
-      color: white;
-      transform: scale(0.8);
-    }
+  /* Ikonet inde i knappen, tilføj ikonet i farvekortet */
+  .ikon-ek {
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: black;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
 
-    .valg-popup-ek {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      gap: 1rem;
-    }
+  /* Hvis farven er valgt: gør ikonet mindre og hvidt i farvekortet */
+  .tilfoej-knap-ek.selected .ikon-ek {
+    color: white;
+    transform: scale(0.8);
+  }
 
-    .valgte-farver-ek {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+  /* Popup med valgte farver, fast i bunden af skærmen */
+  .valg-popup-ek {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    gap: 1rem;
+  }
 
-    .valg-popup-ek.hidden {
-      display: none;
-    }
+  /* De valgte farver vises side om side og kan gå på næste linje i pop uppen */
+  .valgte-farver-ek {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
 
-    .valgte-farver-ek .farve-preview-ek {
-      width: 50px;
-      height: 50px;
-      position: relative;
-    }
+  /* Gør popup'en usynlig hvis den har klassen 'hidden' */
+  .valg-popup-ek.hidden {
+    display: none;
+  }
 
-    .farve-preview-ek .fjern-knap-ek {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: white;
-      border: 1px solid #000;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 12px;
-      text-align: center;
-      cursor: pointer;
-      line-height: 16px;
-    }
+  /* Lille forhåndsvisning af valgt farve i pop uppen */
+  .valgte-farver-ek .farve-preview-ek {
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
 
-    #tilfoejListe-ek {
-      height: 50px;
-      padding: 0 1.5rem;
-      background-color: #1E32DA;
-      color: white;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      align-self: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
-</head>
+  /* Knappen til at fjerne en valgt farve i pop uppen */
+  .farve-preview-ek .fjern-knap-ek {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 16px;
+  }
+
+  /* Den store blå 'Tilføj' knap i bunden af pop uppen */
+  #tilfoejListe-ek {
+    height: 50px;
+    padding: 0 1.5rem;
+    background-color: #1E32DA;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
 
 <body>
 <header>
@@ -273,48 +305,65 @@
 
 <script src="database.js"></script>
 <script>
+  // Venter på at hele HTML-siden er indlæst, før den kører JavaScript
   document.addEventListener("DOMContentLoaded", function () {
+
+    // Henter HTML-elementet, hvor farverne skal vises
     const container = document.getElementById("farveContainer-ek");
+
+    // Henter input-feltet til søgning
     const input = document.getElementById("sogInput-ek");
 
+    // Henter popup-boksen i bunden af skærmen, som viser valgte farver
     const popup = document.getElementById("valgPopup-ek");
+
+    // Henter det område, hvor de valgte farver bliver vist i popup'en
     const valgteContainer = document.getElementById("valgteFarver-ek");
+
+    // Henter knappen med teksten "Tilføj" i popup'en
     const tilfoejKnap = document.getElementById("tilfoejListe-ek");
 
+    // Opretter en tom liste til at holde styr på hvilke farver brugeren har valgt
     let valgteFarver = [];
 
+    // Funktion som viser alle de valgte farver i popup'en
     function visValgteFarver() {
-      valgteContainer.innerHTML = "";
+      valgteContainer.innerHTML = ""; // Tømmer det gamle indhold
 
+      // Hvis ingen farver er valgt, skjules popup'en
       if (valgteFarver.length === 0) {
         popup.classList.add("hidden");
         return;
       }
 
+      // Hvis der ER valgt farver, vises popup'en
       popup.classList.remove("hidden");
 
+      // Gennemgå hver valgt farve og vis den i preview-feltet
       valgteFarver.forEach(f => {
         const preview = document.createElement("div");
         preview.className = "farve-preview-ek";
-        preview.style.backgroundColor = f.hex;
+        preview.style.backgroundColor = f.hex; // Baggrundsfarve sættes til farvens hex-værdi
 
         const fjern = document.createElement("div");
         fjern.className = "fjern-knap-ek";
-        fjern.textContent = "✕";
+        fjern.textContent = "✕"; // Et kryds brugeren kan klikke for at fjerne farven
 
+        // Når brugeren klikker på fjern-knappen:
         fjern.addEventListener("click", function () {
-          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode);
-          visValgteFarver();
-          renderFarver(colorData);
+          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode); // Fjerner farven fra listen
+          visValgteFarver(); // Opdater visningen i popup'en
+          renderFarver(colorData); // Genskab farverne i hovedvisningen
         });
 
         preview.appendChild(fjern);
-        valgteContainer.appendChild(preview);
+        valgteContainer.appendChild(preview); // Vis preview med fjern-knap i popup'en
       });
     }
 
+    // Funktion som viser alle farver på siden – enten alle eller dem der er filtreret
     function renderFarver(data) {
-      container.innerHTML = "";
+      container.innerHTML = ""; // Tømmer visningen
 
       data.forEach(farve => {
         const boks = document.createElement("div");
@@ -322,65 +371,104 @@
 
         const farveDiv = document.createElement("div");
         farveDiv.className = "farve-ek";
-        farveDiv.style.backgroundColor = farve.hex;
+        farveDiv.style.backgroundColor = farve.hex; // Sæt baggrundsfarve
 
+        // Hvis farven er en effektfarve og har en tekstur, tilføj billede som tekstur
         if (farve.type === "effekt" && farve.tekstur) {
           farveDiv.style.backgroundImage = `url(fotos/tekstur3.png)`;
         }
 
+        // Pak farve-div ind i et wrapper-div (for layoutets skyld)
         const farveWrapper = document.createElement("div");
         farveWrapper.style.position = "relative";
         farveWrapper.appendChild(farveDiv);
 
+        // Lav informationsdelen med navn, kode og knap
+        // Opretter et nyt HTML-element <div> og gemmer det i variablen 'info'
         const info = document.createElement("div");
+
+        // Giver <div> elementet en klasse, så det kan styles med CSS (info-ek)
         info.className = "info-ek";
+
+        // Her sættes HTML-indholdet inde i <div> direkte som tekst.
+        // aria-label er ligesom alt label
+        // Der bruges backticks (`...`) så man kan skrive HTML over flere linjer og indsætte variabler (template literal).
+        // Tjekker om farven vi viser lige nu allerede er valgt (samme farvekode findes i valgteFarver).
+        // Hvis ja, vis ✔ – hvis nej, vis +
+        // .some er en funktion der tjekker "valgtefarver" listen
         info.innerHTML = `
-        <div class="info-top-ek">
+         <div class="info-top-ek">
           <h4>${farve.navn}</h4>
           <button class="tilfoej-knap-ek" aria-label="Tilføj farve">
-            <span class="ikon-ek">${valgteFarver.some(f => f.kode === farve.kode) ? "✔" : "+"}</span>
+           <span class="ikon-ek">
+            ${valgteFarver.some(f => f.kode === farve.kode) ? "✔" : "+"}
+           </span>
           </button>
-        </div>
-        <p>${farve.kode}</p>
-      `;
+         </div>
+         <p>${farve.kode}</p>
+         `;
 
+        // Saml boksen med farve og information
         boks.appendChild(farveWrapper);
         boks.appendChild(info);
-        container.appendChild(boks);
+        container.appendChild(boks); // Tilføj den til containeren på siden
 
+        // Find knappen og ikonet der blev lavet med innerHTML
         const knap = info.querySelector(".tilfoej-knap-ek");
         const ikon = knap.querySelector(".ikon-ek");
 
+        // Hvis farven allerede er valgt, markér den visuelt
         if (valgteFarver.some(f => f.kode === farve.kode)) {
           knap.classList.add("selected");
           boks.style.backgroundColor = "#f0f0f0";
         }
 
+        // Når brugeren klikker på knappen (plus eller flueben)
         knap.addEventListener("click", function () {
           const alleredeValgt = valgteFarver.some(f => f.kode === farve.kode);
 
           if (alleredeValgt) {
+            // Fjern farven fra listen
             valgteFarver = valgteFarver.filter(f => f.kode !== farve.kode);
             knap.classList.remove("selected");
-            ikon.textContent = "+";
+            ikon.textContent = "+"; // Vis + igen
             boks.style.backgroundColor = "transparent";
           } else {
+            // Tilføj farven til listen
             valgteFarver.push(farve);
             knap.classList.add("selected");
-            ikon.textContent = "✔";
+            ikon.textContent = "✔"; // Vis ✔ som bekræftelse
             boks.style.backgroundColor = "#f0f0f0";
           }
 
+          // Opdater popup med valgte farver
           visValgteFarver();
         });
       });
     }
 
+    // Når brugeren klikker på \"Tilføj\" knappen i popup'en
+    tilfoejKnap.addEventListener("click", function () {
+      if (valgteFarver.length > 0) {
+        // Gem de valgte farver i browserens hukommelse (localStorage)
+        localStorage.setItem("valgteFarver", JSON.stringify(valgteFarver));
+
+        // Gå videre til næste side – fx visning eller bestilling
+        window.location.href = "emilie.html";
+      } else {
+        // Brugeren har ikke valgt nogen farver
+        alert("Du skal vælge mindst én farve før du kan fortsætte.");
+      }
+    });
+
+    // Vis alle farver første gang siden åbnes
     renderFarver(colorData);
 
+    // Når brugeren skriver i søgefeltet...
     input.addEventListener("input", function () {
-      const søgning = input.value.toLowerCase();
+      const søgning = input.value.toLowerCase(); // Gem det skrevne, gjort småt
       const filtreret = colorData.filter(f => {
+        // Tjek om det der skrives matcher noget i navn, kode osv.
         return (
                 f.navn.toLowerCase().includes(søgning) ||
                 f.kode.toLowerCase().includes(søgning) ||
@@ -390,9 +478,13 @@
         );
       });
 
+      // Vis kun de farver der matcher søgningen
       renderFarver(filtreret);
     });
+
   });
+
+
 </script>
 </body>
 </html>

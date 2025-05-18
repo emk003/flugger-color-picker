@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script> <!-- link til fontawesome m. ikoner-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- link til font fra google ( tre linjer )-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><title>flügger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+body {
+margin: 0;
+font-family: "Inter", sans-serif;
+background-color: white;
+}
+
+h3 {
+margin-left: 2rem;
+margin-top: 2rem;
+margin-bottom: 1rem;
+}
+
+/* Wrapper der holder alle farvebokse på række */
+.color-wrapper-ek {
+    display: flex; /* Lægger elementer i en række */
+    flex-direction: row; /* Gør det til en vandret række */
+    gap: 10px; /* Afstand mellem boksene */
+    overflow-x: auto; /* Gør rækken scroll-bar, hvis den er for bred */
+    padding-left: 2rem; /* Luft til venstre */
+    padding-top: 1rem; /* Luft foroven */
+    scroll-snap-type: x mandatory; /* Gør det muligt at “snappe” til elementer ved scroll */
+}
+
+
+/* Styling af hver farveboks */
+.color-box-ek {
+    width: 80px;
+    height: 80px;
+    border-radius: 0; /* Ingen runde hjørner */
+    display: flex; /* Bruger flex til at centrere indhold */
+    align-items: center;
+    justify-content: center;
+    color: white; /* Tekstfarve */
+    font-size: 24px; /* Størrelse på ikoner eller tekst */
+    cursor: pointer; /* Gør boksen klikbar */
+    transition: width 0.4s ease, padding 0.3s ease; /* Glidende animation ved ændring */
+    position: relative; /* Gør det muligt at placere ting absolut inden i boksen */
+    flex-direction: column; /* Lægger indholdet lodret */
+    flex-shrink: 0; /* Boksen bliver ikke mindre ved scroll */
+    scroll-snap-align: start; /* Snapper til denne boks ved scroll */
+    overflow: hidden; /* Skjul det der går udenfor boksen */
+}
+
+/* Når en farveboks er "udvidet" (klik), bliver den bredere og teksten vises i toppen */
+.color-box-ek.expanded-ek {
+    width: 220px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+/* Ikonet (pensel) i boksen */
+.icon-ek {
+    font-size: 24px;
+    transition: opacity 0.2s ease; /* Glidende overgang når den forsvinder */
+}
+
+/* Når boksen er åben, skjul ikonet */
+.color-box-ek.expanded-ek .icon-ek {
+    opacity: 0;
+    pointer-events: none; /* Ikonet kan ikke klikkes på */
+}
+
+/* Info-tekst (navn + kode) som vises i bunden af boksen */
+.info-ek {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    display: none; /* Skjult som standard */
+    width: calc(100% - 20px); /* Fylder næsten hele bredden */
+}
+
+/* Når boksen er åben, vis info-teksten */
+.color-box-ek.expanded-ek .info-ek {
+    display: block;
+}
+
+/* Skraldespand-ikon */
+.trash-ek {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 16px;
+    display: none; /* Skjult som standard */
+    color: white;
+}
+
+/* Vis skraldespanden når boksen er åben */
+.color-box-ek.expanded-ek .trash-ek {
+    display: block;
+}
+
+
+/* Boks til at tilføje nye farver (vises som et stort "+") */
+.add-box-ek {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 0;
+    font-size: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+/* Hover-effekt for tilføj-boksen */
+.add-box-ek:hover {
+    background-color: #ccc;
+}
+
+/* Tilføjer lidt ekstra luft efter sidste boks i rækken */
+.color-wrapper-ek::after {
+    content: "";
+    flex: 0 0 1rem;
+}
+
+/* sektion med lignende farver*/
+
+/* Lignende farver sektion */
+.match-sektion-ek {
+    margin: 2rem;
+    border: 1px solid black;
+    padding: 1rem;
+    background: white;
+    border-radius: 0;
+    max-width: 800px;
+}
+
+/* Den klikbare overskrift "Se lignende farver" */
+.match-toggle-ek {
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+font-size: 1.1rem;
+font-weight: bold;
+margin-bottom: 0.5rem;
+}
+
+/* Containeren som viser de matchende farver */
+.match-liste-ek {
+display: flex;
+gap: 10px;
+flex-wrap: wrap; /* Farverne hopper ned på næste linje hvis der ikke er plads */
+}
+
+/* Styling af en lignende farveboks */
+.similar-color-ek {
+width: 60px;
+height: 60px;
+border-radius: 0;
+position: relative;
+flex-shrink: 0;
+cursor: pointer;
+}
+
+/* Det lille plus-ikon i midten af lignende farve */
+.plus-icon-ek {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrer ikonet perfekt */
+    font-size: 1.5rem;
+    color: black;
+    background: rgba(255, 255, 255, 0.8); /* Hvid baggrund med gennemsigtighed */
+    border-radius: 50%; /* Gør den rund */
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px; /* Vertikal centrering */
+}
+
+/* Skjuler elementer med denne klasse */
+.hidden-ek {
+display: none;
+}
+</style>
+<body>
+
+<h3>Dine gemte farver</h3>
+
+<div class="color-wrapper-ek" id="colorWrapper-ek">
+    <a href="allefarver.html" class="color-box-ek add-box-ek">+</a>
+</div>
+
+<!-- Lignende farver visning -->
+<div id="matchSektion-ek" class="match-sektion-ek">
+    <div id="matchToggle-ek" class="match-toggle-ek">
+        <span>Se lignende farver</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div id="matchListe-ek" class="match-liste-ek hidden-ek">Klik først på en farve</div>
+</div>
+
+<script src="database.js"></script>
+
+<script>
+    // Venter på at hele HTML-siden er indlæst, før den kører JavaScript
+    document.addEventListener("DOMContentLoaded", function () {
+        // Hent relevante HTML-elementer
+        const wrapper = document.getElementById("colorWrapper-ek"); // Heri bliver alle de valgte farver (bokse) lagt ind.
+        const matchToggle = document.getElementById("matchToggle-ek"); // Det er knappen man klikker på for at finde lignende farver.
+        const matchListe = document.getElementById("matchListe-ek"); // Når du klikker på “Find lignende farver”, bliver resultaterne (farvebokse) vist inde i det her element.
+
+        // Hent gemte farver fra localStorage
+        const farverJSON = localStorage.getItem("valgteFarver");
+        if (!farverJSON) return; // Stop hvis der ikke er nogen gemte farver
+
+        const farver = JSON.parse(farverJSON); // Konverter tekst til JavaScript-objekt
+
+        // Vis hver valgt farve i visningen
+        // gør igennem listen med alle farver og for hver farve, laver den en boks, baggrundsfarve og viser den
+        farver.forEach((f) => {
+            const box = document.createElement("div");
+            box.className = "color-box-ek";
+            box.style.backgroundColor = f.hex; // Brug farvens hex-værdi som baggrund
+
+            // Hvis farven er en effekt og har tekstur, sæt billedet på farveboksen
+            if (f.type === "effekt" && f.tekstur) {
+                box.style.backgroundImage = `url(${f.tekstur})`;
+                box.style.backgroundBlendMode = "multiply";
+                box.style.backgroundSize = "cover";
+                box.style.backgroundPosition = "center";
+            }
+
+            // Ikon til dekoration (pensel-ikon)
+            const icon = document.createElement("div");
+            icon.className = "icon-ek";
+            icon.innerHTML = '<i class="fa-solid fa-brush"></i>';
+
+            // Tekst-info med navn og kode
+            const info = document.createElement("div");
+            info.className = "info-ek";
+            info.innerHTML = `<strong>${f.navn}</strong><br>${f.kode}`;
+
+            // Skraldespandsikon for at fjerne farve
+            const trash = document.createElement("div");
+            trash.className = "trash-ek";
+            trash.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+            // Klik på skraldespanden: fjern farven fra gemte og genindlæs siden
+            trash.addEventListener("click", (e) => {
+                e.stopPropagation(); // Forhindrer at det klik aktiverer farveboksen
+                const nyeFarver = farver.filter(farve => farve.kode !== f.kode); //Laver en ny liste uden den farve brugeren vil slette.
+                localStorage.setItem("valgteFarver", JSON.stringify(nyeFarver)); //Gemmer den nye liste (uden farven) i browserens hukommelse.
+                location.reload(); //Genindlæser siden, så visningen opdateres.
+            });
+
+            // Samler farveboksen med malerpensel ikonet
+            box.appendChild(icon);
+            box.appendChild(info);
+            box.appendChild(trash);
+
+            // Klik på en farveboks: vis match-muligheder
+            box.addEventListener("click", () => {
+                // find alle elementer på siden der matcher denne klasse
+                document.querySelectorAll(".color-box-ek.expanded-ek").forEach(b => {
+                    //gennemgår alle farvebokser og fjerner expanded fra alle, udover den der er klikket på
+                    if (b !== box) b.classList.remove("expanded-ek");
+                });
+                // tilføjer eller fjerne classen
+                box.classList.toggle("expanded-ek");
+            });
+
+            //viser farveboksen med navn, kode og skraldespand
+            wrapper.appendChild(box);
+        });
+
+        // Klik på "match" knap (lignende farver)
+        matchToggle.addEventListener("click", () => {
+            const aktivBoks = document.querySelector(".color-box-ek.expanded-ek"); //finder den åbne farve - så den ved hvilken farve der skal matches
+            const ikon = matchToggle.querySelector("i"); //finder ikonet (pilen)
+
+            // Hvis listen allerede er åben, luk den igen
+            if (!matchListe.classList.contains("hidden-ek")) {
+                matchListe.classList.add("hidden-ek"); // Tilføj klassen 'hidden-ek', så listen bliver skjult i CSS
+                ikon.classList.remove("fa-chevron-up");  // Fjern pil-op-ikonet fra knappen
+                ikon.classList.add("fa-chevron-down"); // Tilføj pil-ned-ikonet, så brugeren ser at listen er lukket
+                return; // Stop funktionen her, så den ikke fortsætter med at vise lignende farver
+            }
+
+            // Hvis ingen farve er valgt, vis besked
+            if (!aktivBoks) {
+                matchListe.innerHTML = "<em>Vælg først en farve ovenover</em>";
+                matchListe.classList.remove("hidden-ek"); // Vis listen med besked – den har været skjult med CSS-klassen 'hidden-ek'
+                return; //stop resten af funktionen her
+            }
+
+            // Hent den valgte farves data fra localStorage
+            const aktivHex = aktivBoks.style.backgroundColor; // Hent den aktuelle baggrundsfarve (hex eller rgb) fra den åbnede farveboks
+            // Find den farve i 'farver'-listen som har samme hex-værdi som den valgte
+            const aktivData = farver.find(f => f.hex.toUpperCase() === rgbToHex(aktivHex)); // Brug 'toUpperCase()' og 'rgbToHex' for at sikre at farverne sammenlignes ens
+
+            // Hvis der ikke blev fundet nogen farve der matcher, vis en fejlbesked
+            if (!aktivData) {
+                matchListe.innerHTML = "<em>Vi fandt desværre ikke en lignende farve</em>"; // Skriv fejl i match-listen
+                return; // Stop funktionen, fordi vi ikke kan finde lignende farver uden data
+            }
+
+            // Find lignende farver i colorData baseret på grundfarve eller tone
+            const lignende = colorData
+                // Filtrer: behold kun farver som har en anden kode end den valgte,
+                // og som enten har samme grundfarve eller samme tone
+                .filter(f =>
+                    f.kode !== aktivData.kode && // Undgå at matche med sig selv
+                    (f.grundfarve === aktivData.grundfarve || f.tone === aktivData.tone) // Match på grundfarve eller tone
+                )
+                .slice(0, 4); // Vis kun 4 lignende
+
+            // Ryd indholdet i match-listen, så vi kan vise nye farver
+            matchListe.innerHTML = "";
+
+            // Fjern klassen der skjuler match-listen, så den bliver synlig
+            matchListe.classList.remove("hidden-ek");
+
+            // Skift pilen i knappen fra ned (lukket) til op (åben)
+            ikon.classList.remove("fa-chevron-down");
+            ikon.classList.add("fa-chevron-up");
+
+            // Gå igennem hver farve i listen over lignende farver
+            lignende.forEach(f => {
+                // Opret et nyt <div>-element til at vise farven
+                const box = document.createElement("div");
+                // Giv boksen en klasse, så den kan styles med CSS som en lignende farve
+                box.className = "similar-color-ek";
+                // Sæt baggrundsfarven i boksen til farvens hex-værdi
+                box.style.backgroundColor = f.hex;
+
+                // Hvis farven er en effektfarve og har en tekstur:
+                if (f.type === "effekt" && f.tekstur) {
+                    // Brug tekstur-billedet som baggrund
+                    box.style.backgroundImage = `url(${f.tekstur})`;
+                    // Blend farve og tekstur sammen
+                    box.style.backgroundBlendMode = "multiply";
+                    // Sørg for at billedet fylder hele boksen
+                    box.style.backgroundSize = "cover";
+                    // Placér billedet centreret
+                    box.style.backgroundPosition = "center";
+                }
+
+                // Plus-knap til at tilføje lignende farve
+                const plus = document.createElement("div"); // Opret et nyt <div>-element til plus-ikonet
+                plus.className = "plus-icon-ek"; // Giv den en klasse, så den kan styles som en lille rund plus-knap
+                plus.textContent = "+"; // Sæt indholdet i knappen til et plus-tegn
+
+                // Når brugeren klikker på plus-knappen
+                plus.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Forhindrer at klik aktiverer eventuelt klik på bagvedliggende element (som farveboksen)
+
+                    // Hent allerede gemte farver fra localStorage (eller en tom liste hvis ingen findes)
+                    const gemte = JSON.parse(localStorage.getItem("valgteFarver")) || [];
+
+                    // Tjek om farven allerede er gemt (så vi ikke tilføjer den to gange)
+                    if (!gemte.find(v => v.kode === f.kode)) {
+                        gemte.push(f); // Tilføj den nye farve til listen
+
+                        // Gem den opdaterede liste tilbage i localStorage
+                        localStorage.setItem("valgteFarver", JSON.stringify(gemte));
+                        // Genindlæs siden, så den nye farve vises med det samme
+                        location.reload();
+                    }
+                });
+
+                box.appendChild(plus); // Læg plus-knappen ind i farveboksen (så brugeren kan klikke på den)
+                matchListe.appendChild(box); // Tilføj hele farveboksen (med farve og plus) til match-listen
+            });
+        });
+
+        // Funktion der konverterer RGB til HEX (bruges til at finde den valgte farve korrekt)
+        function rgbToHex(rgb) {
+            // Udtrækker alle tal fra RGB-strengen, fx "rgb(255, 100, 50)" → ["255", "100", "50"]
+            const result = rgb.match(/\d+/g);
+            // Konverterer hvert tal til hex, sørger for at hvert hex-tal har 2 cifre, samler dem til én streng og gør den stor (A-F)
+            // Fx ["255", "100", "50"] → "#FF6432"
+            return "#" + result
+                .map(x => parseInt(x).toString(16).padStart(2, "0")) // hver værdi: decimaltal → hex med to cifre
+                .join("") // samler alle hex-værdier til én streng uden mellemrum
+                .toUpperCase();  // gør fx "#ff6432" til "#FF6432" (store bogstaver)
+        }
+    });
+</script>
+
+
+</body>
+</html>
