@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <title>Farvevælger</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background-color: white;
+      text-align: center;
+    }
+    header {
+      background-color: white;
+    }
+    .ej-USP-bar-ek {
+      background-color: #363433;
+      padding: 0.5rem;
+      color: white;
+    }
+    .ej-header-indhold-ek {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .ej-logo-ek {
+      max-width: 150px;
+    }
+    .ej-ikoner-ek {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.8rem;
+    }
+    .ej-container {
+      position: relative;
+      display: inline-block;
+      max-width: 500px;
+      width: 100%;
+    }
+    .ej-room-image {
+      width: 100%;
+      display: block;
+    }
+    .ej-color-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      mask-image: url('foto/Group 75.png');
+      -webkit-mask-image: url('foto/Group 75.png');
+      mask-size: cover;
+      -webkit-mask-size: cover;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .ej-toggle-button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .ej-toggle-switch {
+      position: relative;
+      width: 70px;
+      height: 40px;
+      background-color: white;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    .ej-icon {
+      font-size: 20px;
+      pointer-events: none;
+    }
+    .ej-slider {
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      width: 36px;
+      height: 36px;
+      background-color: orange;
+      border-radius: 50%;
+      transition: left 0.5s ease, background-color 0.3s ease;
+    }
+    .color-wrapper-ek {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2rem;
+      justify-content: center;
+    }
+    .color-box-ek {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      position: relative;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+    .color-box-ek.expanded-ek {
+      width: 220px;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .icon-ek { font-size: 24px; }
+    .color-box-ek.expanded-ek .icon-ek { opacity: 0; }
+    .info-ek {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      display: none;
+      color: white;
+      text-align: left;
+    }
+    .color-box-ek.expanded-ek .info-ek { display: block; }
+    .trash-ek {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 16px;
+      display: none;
+      color: white;
+    }
+    .color-box-ek.expanded-ek .trash-ek { display: block; }
+    .match-sektion-ek {
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 600px;
+      border: 1px solid black;
+    }
+    .match-toggle-ek {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .match-liste-ek {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .similar-color-ek {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+    .plus-icon-ek {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      color: black;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+    }
+    .hidden-ek { display: none; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="ej-USP-bar-ek">30 dages returret</div>
+  <div class="ej-header-indhold-ek">
+    <img class="ej-logo-ek" src="fotos/logo.png" alt="logo">
+    <div class="ej-ikoner-ek">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <i class="fa-solid fa-basket-shopping"></i>
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+</header>
+
+<div class="ej-container">
+  <div class="ej-toggle-button" onclick="toggleDayNight()">
+    <div class="ej-toggle-switch">
+      <span class="ej-icon">☀️</span>
+      <span class="ej-icon">🌙</span>
+      <div class="ej-slider" id="ej-slider"></div>
+    </div>
+  </div>
+  <img id="ej-mainImage" class="ej-room-image" src="foto/Frame 58.jpg" alt="Room">
+  <div id="ej-colorLayer" class="ej-color-layer"></div>
+</div>
+
+<div class="color-wrapper-ek" id="colorWrapper-ek"></div>
+<div class="match-sektion-ek">
+  <div id="matchToggle-ek" class="match-toggle-ek">
+    <span>Se lignende farver</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div id="matchListe-ek" class="match-liste-ek hidden-ek">Klik først på en farve</div>
+</div>
+
+<script src="database.js"></script>
+<script>
+  const wrapper = document.getElementById("colorWrapper-ek");
+  const matchToggle = document.getElementById("matchToggle-ek");
+  const matchListe = document.getElementById("matchListe-ek");
+  const layer = document.getElementById("ej-colorLayer");
+
+  const farver = JSON.parse(localStorage.getItem("valgteFarver")) || [];
+
+  function setColor(color) {
+    layer.style.backgroundColor = color;
+  }
+
+  farver.forEach(f => {
+    const box = document.createElement("div");
+    box.className = "color-box-ek";
+    box.style.backgroundColor = f.hex;
+    if (f.type === "effekt" && f.tekstur) {
+      box.style.backgroundImage = `url(${f.tekstur})`;
+      box.style.backgroundBlendMode = "multiply";
+    }
+    const icon = document.createElement("div");
+    icon.className = "icon-ek";
+    icon.innerHTML = '<i class="fa-solid fa-brush"></i>';
+    const info = document.createElement("div");
+    info.className = "info-ek";
+    info.innerHTML = `<strong>${f.navn}</strong><br>${f.kode}`;
+    const trash = document.createElement("div");
+    trash.className = "trash-ek";
+    trash.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    trash.addEventListener("click", e => {
+      e.stopPropagation();
+      const nyeFarver = farver.filter(farve => farve.kode !== f.kode);
+      localStorage.setItem("valgteFarver", JSON.stringify(nyeFarver));
+      location.reload();
+    });
+    box.addEventListener("click", () => {
+      document.querySelectorAll(".color-box-ek.expanded-ek").forEach(b => b !== box && b.classList.remove("expanded-ek"));
+      box.classList.toggle("expanded-ek");
+      setColor(f.hex);
+    });
+    box.appendChild(icon);
+    box.appendChild(info);
+    box.appendChild(trash);
+    wrapper.appendChild(box);
+  });
+
+  matchToggle.addEventListener("click", () => {
+    const aktivBoks = document.querySelector(".color-box-ek.expanded-ek");
+    const ikon = matchToggle.querySelector("i");
+    if (!matchListe.classList.contains("hidden-ek")) {
+      matchListe.classList.add("hidden-ek");
+      ikon.classList.remove("fa-chevron-up");
+      ikon.classList.add("fa-chevron-down");
+      return;
+    }
+    if (!aktivBoks) {
+      matchListe.innerHTML = "<em>Vælg først en farve ovenover</em>";
+      matchListe.classList.remove("hidden-ek");
+      return;
+    }
+    const rgb = getComputedStyle(aktivBoks).backgroundColor;
+    const aktivHex = rgbToHex(rgb);
+    const aktivData = farver.find(f => f.hex.toUpperCase() === aktivHex);
+    if (!aktivData) {
+      matchListe.innerHTML = "<em>Vi fandt desværre ikke en lignende farve</em>";
+      return;
+    }
+    const lignende = colorData.filter(f => f.kode !== aktivData.kode && (f.grundfarve === aktivData.grundfarve || f.tone === aktivData.tone)).slice(0, 4);
+    matchListe.innerHTML = "";
+    matchListe.classList.remove("hidden-ek");
+    ikon.classList.remove("fa-chevron-down");
+    ikon.classList.add("fa-chevron-up");
+    lignende.forEach(f => {
+      const box = document.createElement("div");
+      box.className = "similar-color-ek";
+      box.style.backgroundColor = f.hex;
+      if (f.type === "effekt" && f.tekstur) {
+        box.style.backgroundImage = `url(${f.tekstur})`;
+        box.style.backgroundBlendMode = "multiply";
+      }
+      const plus = document.createElement("div");
+      plus.className = "plus-icon-ek";
+      plus.textContent = "+";
+      plus.addEventListener("click", e => {
+        e.stopPropagation();
+        const gemte = JSON.parse(localStorage.getItem("valgteFarver")) || [];
+        if (!gemte.find(v => v.kode === f.kode)) {
+          gemte.push(f);
+          localStorage.setItem("valgteFarver", JSON.stringify(gemte));
+          location.reload();
+        }
+      });
+      box.appendChild(plus);
+      matchListe.appendChild(box);
+    });
+  });
+
+  function rgbToHex(rgb) {
+    const result = rgb.match(/\d+/g);
+    return "#" + result.map(x => parseInt(x).toString(16).padStart(2, "0")).join("").toUpperCase();
+  }
+
+  let isDay = true;
+  function toggleDayNight() {
+    const image = document.getElementById('ej-mainImage');
+    const slider = document.getElementById('ej-slider');
+    isDay = !isDay;
+    image.src = isDay ? 'foto/Frame 58.jpg' : 'foto/Group 115.jpg';
+    slider.style.left = isDay ? '2px' : '44px';
+    slider.style.backgroundColor = isDay ? 'orange' : 'black';
+  }
+</script>
+</body>
+</html>

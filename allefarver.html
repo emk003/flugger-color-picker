@@ -351,9 +351,11 @@
 
         // Når brugeren klikker på fjern-knappen:
         fjern.addEventListener("click", function () {
-          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode); // Fjerner farven fra listen
-          visValgteFarver(); // Opdater visningen i popup'en
-          renderFarver(colorData); // Genskab farverne i hovedvisningen
+          // Filtrér valgteFarver og behold kun de farver, der IKKE har samme kode som den der blev klikket på
+          // Altså: fjern den valgte farve fra listen
+          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode);
+          visValgteFarver(); // Opdater popup-visningen, så den fjerner farven visuelt
+          renderFarver(colorData); // // Tegn farvebokse på ny i hovedområdet, så de afspejler ændringen
         });
 
         preview.appendChild(fjern);
