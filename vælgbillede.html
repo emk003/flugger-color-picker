@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script> <!-- link til fontawesome m. ikoner-->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- link til font fra google ( tre linjer )-->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><title>flügger</title>
+  <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+  body{ /* fjerner mellemrum fra elementer til kanten af siden*/
+    font-family: "Inter", sans-serif;
+    background-color: white;
+    padding: 0;
+    margin: 0; /* ✅ Set to zero */
+  }
+
+  /* Hele headeren */
+  header{
+    background-color: #fff; /* Hvid baggrund for hele headeren */
+  }
+
+  /* USP-bar øverst */
+  .USP-bar-ek {
+    background-color: #363433; /* Lys grå baggrund */
+    padding: 0.5rem 0.5rem; /* Lidt indvendig luft omkring teksten */
+    text-align: center; /* Centrerer teksten vandret */
+    font-size: 0.9rem; /* Lidt mindre tekststørrelse end standard */
+    color: white; /* Mørk grå tekstfarve */
+  }
+
+  /* Container til logo og ikoner */
+  .header-indhold-ek {
+    display: flex; /* Lægger logo og ikoner vandret */
+    justify-content: space-between; /* Placerer logo til venstre, ikoner til højre */
+    align-items: center; /* Centrerer dem lodret */
+    padding: 1rem 2rem; /* Giver luft omkring indholdet */
+    background-color: white; /*baggrunds farve på header */
+  }
+
+  /* Logo-styling */
+  .logo-ek {
+    max-width: 150px; /* Begrænser logoets størrelse */
+    height: auto; /* Bevarer billedets proportioner */
+  }
+
+  /* Ikoncontainer */
+  .ikoner-ek {
+    display: flex; /* Viser ikonerne på en række */
+    gap: 1rem; /* Laver afstand mellem ikonerne */
+    font-size: 1.8rem; /* Gør ikonerne større end standardtekst */
+  }
+
+  /* styling på de 2 overskrifter */
+  .valg-ek{
+    display: flex; /* sætter dem på en række*/
+    justify-content: center; /* centrere elementerne*/
+    align-items: center; /* aligner elementeren med hinanden*/
+    gap: 2rem; /* mellemrummet mellem elementerne*/
+    background-color: white;
+    margin-top: 2rem; /*mellemrum til toppen*/
+  }
+
+  /* stregen imellem de 2 overskrifter*/
+  .opdeler-ek {
+    width: 1px; /* Tynd streg */
+    align-self: stretch; /* stregen strækker sig, i forhold til de andre elementers højde */
+    background-color: black; /* sort streg */
+  }
+
+  /* Understregning for den, der ikke er valgt */
+  .valgt-ek {
+    border-bottom: 2px solid #000; /* Sort understregning */
+    padding-bottom: 0.2rem; /* Giver lidt luft mellem tekst og streg */
+  }
+
+  .ikke-valgt-ek{
+    font-weight: normal; /* gør fonten mindre tyk*/
+  }
+
+
+
+
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .filter-button {
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  .image-list img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Slide-in bottom box */
+  .bottom-box {
+    position: fixed;
+    bottom: -200px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    transition: bottom 0.3s ease-in-out;
+    z-index: 10;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .bottom-box.active {
+    bottom: 0;
+  }
+
+  .bottom-box img {
+    width: 80px;
+    height: auto;
+
+  }
+
+  .bottom-box button {
+    background-color: #2333cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .bottom-box .close {
+    position: absolute;
+    top: 3px;
+    left: -3px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+
+</style>
+
+<body>
+
+<header>
+  <div class="USP-bar-ek">
+    <p>30 dages returret</p>
+  </div>
+
+  <div class="header-indhold-ek">
+    <img class="logo-ek" src="fotos/logo.png" alt="logo">
+    <div class="ikoner-ek">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <i class="fa-solid fa-basket-shopping"></i>
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+</header>
+
+<div class="valg-ek">
+  <h2 class="valgt-ek">Vælg farve</h2>
+  <div class="opdeler-ek"></div>
+  <h2 class="ikke-valgt-ek">Farvelæg</h2>
+</div>
+
+
+
+
+<div class="container">
+  <h2>Vores billeder</h2>
+  <button class="filter-button">
+    Filter <i class="fa-solid fa-sliders"></i>
+  </button>
+
+  <div class="image-list">
+    <img src="foto/Rectangle 70.png" alt="Stue" onclick="selectImage(this)">
+    <img src="foto/Group 43.png" alt="Spisestue" onclick="selectImage(this)">
+    <img src="foto/Group 45.png" alt="Køkken" onclick="selectImage(this)">
+  </div>
+</div>
+
+<!-- Bottom slide-in box -->
+<div class="bottom-box" id="bottomBox">
+  <button class="close" onclick="closeBox()">✕</button>
+  <img id="selectedImage" src="" alt="Valgt billede">
+  <a href="ema.html">
+    <button>Brug dette billede</button>
+  </a>
+</div>
+
+<script>
+  function selectImage(imgElement) {
+    const box = document.getElementById("bottomBox");
+    const selectedImage = document.getElementById("selectedImage");
+    selectedImage.src = imgElement.src;
+    box.classList.add("active");
+  }
+
+  function closeBox() {
+    document.getElementById("bottomBox").classList.remove("active");
+  }
+
+  function useImage() {
+    const selectedImageSrc = document.getElementById("selectedImage").src;
+    alert("Billedet er valgt: " + selectedImageSrc);
+    // Her kan du sende det videre, gemme det, eller navigere videre
+  }
+</script>
+
+
+</body>
+</html>

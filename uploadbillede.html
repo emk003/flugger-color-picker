@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>flügger</title>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+            rel="stylesheet"
+    />
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            text-align: center;
+        }
+
+        header {
+            background-color: #fff;
+        }
+
+        .USP-bar-ek {
+            background-color: #363433;
+            padding: 0.5rem 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .header-indhold-ek {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: white;
+        }
+
+        .logo-ek {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .ikoner-ek {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .valg-ek {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            background-color: white;
+            margin-top: 2rem;
+        }
+
+        .opdeler-ek {
+            width: 1px;
+            align-self: stretch;
+            background-color: black;
+        }
+
+        .valgt-ek {
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.2rem;
+        }
+
+        .ikke-valgt-ek {
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .upload-container {
+            margin-top: 50px;
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+
+        .upload-button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: blue;
+            border: 1px solid black;
+            border-radius: 1px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-content h3 {
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #uploadedImage {
+            display: none;
+            max-width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="USP-bar-ek">
+        <p>30 dages returret</p>
+    </div>
+
+    <div class="header-indhold-ek">
+        <img class="logo-ek" src="fotos/logo.png" alt="logo" />
+        <div class="ikoner-ek">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<div class="valg-ek">
+    <h2 class="valgt-ek">Vælg farve</h2>
+    <div class="opdeler-ek"></div>
+    <h2 class="ikke-valgt-ek">Farvelæg</h2>
+</div>
+
+<h2>Upload dit billede</h2>
+
+<div class="upload-container">
+    <div class="upload-icon">📷🔍</div>
+    <button class="upload-button" onclick="openPopup()">Klik her for at uploade billede</button>
+</div>
+
+<!-- Popup Modal -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h3>Upload billede</h3>
+        <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" /><br /><br />
+        <img id="uploadedImage" alt="Forhåndsvisning" /><br />
+        <button class="close-btn" onclick="closePopup()">Upload</button>
+    </div>
+</div>
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.getElementById("uploadedImage");
+                img.src = e.target.result;
+                img.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>

@@ -2,9 +2,342 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>flügger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            text-align: center;
+        }
+
+        .ej-USP-bar-ek {
+            background-color: #363433;
+            padding: 0.5rem 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .ej-header-indhold-ek {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: white;
+        }
+
+        .ej-logo-ek {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .ej-ikoner-ek {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .ej-valg-ek {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            background-color: white;
+            margin-top: 2rem;
+        }
+
+        .ej-opdeler-ek {
+            width: 1px;
+            align-self: stretch;
+            background-color: black;
+        }
+
+        .ej-valgt-ek {
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.2rem;
+        }
+
+        .ej-ikke-valgt-ek {
+            font-weight: normal;
+        }
+
+        .ej-container {
+            position: relative;
+            display: inline-block;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .ej-room-image {
+            width: 100%;
+            display: block;
+        }
+
+        .ej-color-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(162, 183, 156);
+            mask-image: url('foto/Group 75.png');
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-image: url('foto/Group 75.png');
+            -webkit-mask-size: cover;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .ej-palette {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-right: 1px;
+        }
+
+        .ej-swatch {
+            width: 78px;
+            height: 78px;
+            margin: 8px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            transition: transform 0.2s;
+        }
+
+        .ej-swatch:hover {
+            transform: scale(1.1);
+            border-color: #666;
+        }
+
+        .ej-add-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            background: #ffffff;
+            color: #333;
+        }
+
+        .ej-button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .ej-icon-button,
+        .ej-text-button {
+            border: 1px solid #000;
+            background: #fff;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .ej-icon-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .ej-toggle-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .ej-toggle-switch {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            background-color: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .ej-icon {
+            font-size: 20px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .ej-slider {
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            width: 36px;
+            height: 36px;
+            background-color: orange;
+            border-radius: 50%;
+            transition: left 0.5s ease, background-color 0.3s ease;
+            z-index: 1;
+        }
+
+        .ej-Tekst {
+            display: flex;
+            margin-left: 15px;
+            margin-bottom: -10px;
+            font-size: 20px;
+        }
+
+        .ej-swatch img {
+            width: 33px;
+            height: 33px;
+            object-fit: contain;
+            pointer-events: none;
+            margin-top: 20px;
+        }
+
+        .ej-popup {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ej-popup.ej-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ej-popup-content {
+            max-width: 100%;
+            max-height: 100%;
+            width: 385px;
+        }
+    </style>
 </head>
+
 <body>
+
+<header>
+    <div class="ej-USP-bar-ek">
+        <p>30 dages returret</p>
+    </div>
+
+    <div class="ej-header-indhold-ek">
+        <img class="ej-logo-ek" src="fotos/logo.png" alt="logo">
+        <div class="ej-ikoner-ek">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<div class="ej-valg-ek">
+    <h2 class="ej-valgt-ek">Vælg farve</h2>
+    <div class="ej-opdeler-ek"></div>
+    <h2 class="ej-ikke-valgt-ek">Farvelæg</h2>
+</div>
+
+<div class="ej-container">
+    <div class="ej-toggle-button" onclick="toggleDayNight()">
+        <div class="ej-toggle-switch" id="ej-toggle-switch">
+            <span class="ej-icon sun">☀️</span>
+            <span class="ej-icon moon">🌙</span>
+            <div class="ej-slider" id="ej-slider"></div>
+        </div>
+    </div>
+
+    <img src="foto/Frame%2058.jpg" alt="Room" class="ej-room-image" id="ej-mainImage" />
+    <div class="ej-color-layer" id="ej-colorLayer"></div>
+
+    <div class="ej-popup" id="ej-popup">
+        <img src="foto/Group 116.png" class="ej-popup-content" alt="Popup Image">
+    </div>
+</div>
+
+<div class="ej-button-group">
+    <button class="ej-icon-button" id="ej-popupBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M16 3h5v5M8 21H3v-5M21 8L3 8M21 16H3"/>
+        </svg>
+    </button>
+    <a href="vælgbillede.html">
+        <button class="ej-text-button">Skift billede</button>
+    </a>
+</div>
+
+<h2 class="ej-Tekst">Dine gemte farver</h2>
+
+<div class="ej-palette">
+    <a href="add-color.html" class="ej-swatch ej-add-button">+</a>
+
+    <div class="ej-swatch" style="background:#D9D9C0" onclick="setColor('#D9D9C0')">
+        <img src="foto/Paint%20Brush.png" alt="Icon 1">
+    </div>
+
+    <div class="ej-swatch" style="background:#848E83" onclick="setColor('#848E83')">
+        <img src="foto/Paint%20Brush-kopi.png" alt="Icon 1">
+    </div>
+    <div class="ej-swatch" style="background:#B9C3C6" onclick="setColor('#B9C3C6')">
+        <img src="foto/Paint%20Brush.png" alt="Icon 1">
+    </div>
+    <div class="ej-swatch" style="background:#596250" onclick="setColor('#596250')"></div>
+</div>
+
+<script>
+    function setColor(color) {
+        document.getElementById('ej-colorLayer').style.backgroundColor = color;
+    }
+
+    let isDay = true;
+
+    function toggleDayNight() {
+        const image = document.getElementById('ej-mainImage');
+        const slider = document.getElementById('ej-slider');
+
+        isDay = !isDay;
+
+        image.src = isDay ? 'foto/Frame 58.jpg' : 'foto/Group 115.jpg';
+        slider.style.left = isDay ? '2px' : '44px';
+        slider.style.backgroundColor = isDay ? 'orange' : 'black';
+    }
+
+    const popup = document.getElementById("ej-popup");
+    const popupBtn = document.getElementById("ej-popupBtn");
+
+    popupBtn.addEventListener("click", () => {
+        popup.classList.toggle("ej-visible");
+    });
+</script>
 
 </body>
 </html>
