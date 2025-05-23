@@ -102,10 +102,21 @@
       display: flex;
       flex-direction: row;
       gap: 10px;
-      overflow-x: auto;
-      padding: 2rem;
-      justify-content: center;
+      flex-grow: 1;
     }
+
+    .color-row-ek {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .add-box-ek {
+      flex-shrink: 0;
+    }
+
     .color-box-ek {
       width: 80px;
       height: 80px;
@@ -148,10 +159,11 @@
       color: white;
     }
     .color-box-ek.expanded-ek .trash-ek { display: block; }
+
     .match-sektion-ek {
-      margin: 2rem auto;
+      margin: 1rem auto;
       padding: 1rem;
-      max-width: 600px;
+      max-width: 83%;
       border: 1px solid black;
     }
     .match-toggle-ek {
@@ -166,14 +178,16 @@
       flex-wrap: wrap;
     }
     .similar-color-ek {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       position: relative;
       flex-shrink: 0;
       background-size: cover;
       background-position: center;
       cursor: pointer;
+      margin-top: 1rem;
     }
+
     .plus-icon-ek {
       position: absolute;
       top: 50%;
@@ -228,8 +242,9 @@
   <div id="ej-colorLayer" class="ej-color-layer"></div>
 </div>
 
-<div class="color-wrapper-ek" id="colorWrapper-ek">
-  <a href="allefarver.html" class="color-box-ek add-box-ek">+</a>
+<div class="color-row-ek">
+    <a href="allefarver.html" class="color-box-ek add-box-ek">+</a>
+    <div class="color-wrapper-ek" id="colorWrapper-ek"></div>
 </div>
 
 <div class="match-sektion-ek">
