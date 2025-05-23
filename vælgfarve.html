@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/a4b7cedec2.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>vælg farve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /* Hele body-elementet: sæt margin til 0, brug skrifttype Inter, og baggrund som hvid */
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background-color: white;
+    }
+
+    /* Headeren får hvid baggrund */
+    header {
+        background-color: #fff;
+    }
+
+    /* Sort bjælke med USP (unik salgs-pointe) tekst */
+    .USP-bar-ek {
+        background-color: #363433;
+        padding: 0.5rem 0.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: white;
+    }
+
+    /* Indhold i header: logo og ikoner vises side om side */
+    .header-indhold-ek {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: white;
+    }
+
+    /* Logoet: maks bredde 150px, og højden justeres automatisk */
+    .logo-ek {
+        max-width: 150px;
+        height: auto;
+    }
+
+    /* Ikoner (søg, kurv, menu): vises i række med mellemrum */
+    .ikoner-ek {
+        display: flex;
+        gap: 1rem;
+        font-size: 1.8rem;
+    }
+
+    /* Topmenu til valg ("vælg farve" / "farvelæg") */
+    .valg-ek {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background-color: white;
+        margin-top: 2rem;
+    }
+
+    /* Lodret streg mellem valg */
+    .opdeler-ek {
+        width: 1px;
+        align-self: stretch;
+        background-color: black;
+    }
+
+    /* Den valgte sektion får understregning */
+    .valgt-ek {
+        border-bottom: 2px solid #000;
+        padding-bottom: 0.2rem;
+    }
+
+    /* Ikke-valgte er normal i stilen */
+    .ikke-valgt-ek {
+        font-weight: normal;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .color-card {
+        width: 80%;
+        height: 150px; /*højden på hele boksen*/
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        background: white;
+        margin: 1rem;
+    }
+
+    .card-image {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        height: 50%;
+    }
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .card-icon {
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    a {
+        text-decoration: none; /*Fjerner understregning.*/
+        color: inherit; /*Linket arver farven fra forældre-elementet (så det ikke bliver blåt).*/
+    }
+
+</style>
+
+<body>
+<header>
+    <div class="USP-bar-ek">
+        <p>30 dages returret</p>
+    </div>
+    <div class="header-indhold-ek">
+        <img class="logo-ek" src="fotos/logo.png" alt="logo">
+        <div class="ikoner-ek">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<div class="valg-ek">
+    <h2 class="valgt-ek">Vælg farve</h2>
+    <div class="opdeler-ek"></div>
+    <h2 class="ikke-valgt-ek">Farvelæg</h2>
+</div>
+
+<div class="wrapper">
+    <a href="allefarver.html" class="color-card">
+        <img src="fotos/allefarver.jpg" alt="Farvekort" class="card-image">
+        <div class="card-content">
+            <span class="card-title">Alle farver</span>
+            <span class="card-icon">→</span>
+        </div>
+    </a>
+</div>
+
+<div class="wrapper">
+    <div class="color-card">
+        <img src="fotos/udfraprodukt.jpg" alt="Farvekort" class="card-image">
+        <div class="card-content">
+            <span class="card-title">Vælg farve ud fra produkt</span>
+            <span class="card-icon">→</span>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="color-card">
+        <img src="fotos/udfrabilled.jpg" alt="Farvekort" class="card-image">
+        <div class="card-content">
+            <span class="card-title">Identificer farve ud fra billed</span>
+            <span class="card-icon">→</span>
+        </div>
+    </div>
+</div>
+
+</body>

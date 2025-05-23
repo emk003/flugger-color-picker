@@ -243,7 +243,7 @@
 </div>
 
 <div class="color-row-ek">
-    <a href="allefarver.html" class="color-box-ek add-box-ek">+</a>
+    <a href="vælgfarve.html" class="color-box-ek add-box-ek">+</a>
     <div class="color-wrapper-ek" id="colorWrapper-ek"></div>
 </div>
 
@@ -323,7 +323,7 @@
       matchListe.innerHTML = "<em>Vi fandt desværre ikke en lignende farve</em>";
       return;
     }
-    const lignende = colorData.filter(f => f.kode !== aktivData.kode && (f.grundfarve === aktivData.grundfarve || f.tone === aktivData.tone)).slice(0, 4);
+    const lignende = colorData.filter(f => f.kode !== aktivData.kode && f.grundfarve === aktivData.grundfarve).slice(0, 4);
     matchListe.innerHTML = "";
     matchListe.classList.remove("hidden-ek");
     ikon.classList.remove("fa-chevron-down");
