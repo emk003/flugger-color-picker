@@ -37,6 +37,38 @@
       gap: 1rem;
       font-size: 1.8rem;
     }
+    /* Topmenu til valg ("vælg farve" / "farvelæg") */
+    .valg-ek {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background-color: white;
+      margin-top: 2rem;
+    }
+
+    /* Lodret streg mellem valg */
+    .opdeler-ek {
+      width: 1px;
+      align-self: stretch;
+      background-color: black;
+    }
+
+    /* Den valgte sektion får understregning */
+    .valgt-ek {
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.2rem;
+    }
+
+    /* Ikke-valgte er normal i stilen */
+    .ikke-valgt-ek {
+      font-weight: normal;
+    }
+
+    .valgt-ek a {
+      text-decoration: none;
+      color: inherit;
+    }
     .ej-container {
       position: relative;
       display: inline-block;
@@ -229,6 +261,12 @@
     </div>
   </div>
 </header>
+
+<div class="valg-ek">
+  <h2 class="valgt-ek"><a href="vælgfarve.html">Vælg farve</a></h2>
+  <div class="opdeler-ek"></div>
+  <h2 class="ikke-valgt-ek">Farvelæg</h2>
+</div>
 
 <div class="ej-container">
   <div class="ej-toggle-button" onclick="toggleDayNight()">

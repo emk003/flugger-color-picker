@@ -82,6 +82,11 @@
     font-weight: normal;
   }
 
+  .valgt-ek a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   /* Overskriften */
   h3{
     margin: 2rem;
@@ -345,7 +350,7 @@
 </header>
 
 <div class="valg-ek">
-  <h2 class="valgt-ek">Vælg farve</h2>
+  <h2 class="valgt-ek"><a href="vælgfarve.html">Vælg farve</a></h2>
   <div class="opdeler-ek"></div>
   <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
@@ -373,70 +378,86 @@
 
 <script src="database.js"></script>
 <script>
+  // Når hele HTML-dokumentet er indlæst og klar
   document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById("farveContainer-ek");
-    const input = document.getElementById("sogInput-ek");
-    const popup = document.getElementById("valgPopup-ek");
-    const valgteContainer = document.getElementById("valgteFarver-ek");
-    const tilfoejKnap = document.getElementById("tilfoejListe-ek");
-    const filters = document.querySelectorAll(".filter-ek");
+    // Hent relevante DOM-elementer
+    const container = document.getElementById("farveContainer-ek"); // Beholder til visning af farver
+    const input = document.getElementById("sogInput-ek"); // Søge input felt
+    const popup = document.getElementById("valgPopup-ek"); // Popup-vindue der viser valgte farver
+    const valgteContainer = document.getElementById("valgteFarver-ek"); // Beholder til valgte farver
+    const tilfoejKnap = document.getElementById("tilfoejListe-ek"); // Knap til at tilføje valgte farver og gå videre
+    const filters = document.querySelectorAll(".filter-ek"); // Alle filter-elementer på siden
 
+    // Gemmer valgte farver
     let valgteFarver = [];
+
+    // Gemmer de aktive filtre for hver filterkategori
     const aktiveFiltre = {
       grundfarve: new Set(),
       farvekort: new Set(),
       tone: new Set()
     };
 
+    // ----------------------------------------
+    // Funktion: Vis valgte farver i popup
+    // ----------------------------------------
     function visValgteFarver() {
-      valgteContainer.innerHTML = "";
+      valgteContainer.innerHTML = ""; // Tøm containeren
 
+      // Hvis ingen farver er valgt, skjul popup
       if (valgteFarver.length === 0) {
         popup.classList.add("hidden");
         return;
       }
 
-      popup.classList.remove("hidden");
+      popup.classList.remove("hidden"); // Vis popup
 
+      // Gennemgå hver valgt farve og opret visning
       valgteFarver.forEach(f => {
-        const preview = document.createElement("div");
+        const preview = document.createElement("div"); // Visning af farve
         preview.className = "farve-preview-ek";
         preview.style.backgroundColor = f.hex;
 
-        const fjern = document.createElement("div");
+        const fjern = document.createElement("div"); // Knap til at fjerne farve
         fjern.className = "fjern-knap-ek";
         fjern.textContent = "✕";
 
+        // Når man klikker på "✕", fjernes farven
         fjern.addEventListener("click", function () {
           valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode);
-          visValgteFarver();
-          renderFarver(colorData);
+          visValgteFarver(); // Opdater visning
+          renderFarver(colorData); // Opdater alle farvebokse
         });
 
-        preview.appendChild(fjern);
-        valgteContainer.appendChild(preview);
+        preview.appendChild(fjern); // Tilføj knap til preview
+        valgteContainer.appendChild(preview); // Vis preview
       });
     }
 
+    // ----------------------------------------
+    // Funktion: Render farver i bokse
+    // ----------------------------------------
     function renderFarver(data) {
-      container.innerHTML = "";
+      container.innerHTML = ""; // Ryd eksisterende visning
 
       data.forEach(farve => {
-        const boks = document.createElement("div");
+        const boks = document.createElement("div"); // Ydre boks
         boks.className = "farveboks-ek";
 
-        const farveDiv = document.createElement("div");
+        const farveDiv = document.createElement("div"); // Farvefelt
         farveDiv.className = "farve-ek";
         farveDiv.style.backgroundColor = farve.hex;
 
+        // Hvis farven er en effekt med tekstur, vis billede
         if (farve.type === "effekt" && farve.tekstur) {
           farveDiv.style.backgroundImage = `url(fotos/tekstur3.png)`;
         }
 
-        const farveWrapper = document.createElement("div");
+        const farveWrapper = document.createElement("div"); // Wrapper til placering
         farveWrapper.style.position = "relative";
         farveWrapper.appendChild(farveDiv);
 
+        // Infofelt med navn og kode og tilføjknap
         const info = document.createElement("div");
         info.className = "info-ek";
         info.innerHTML = `
@@ -451,18 +472,20 @@
         <p>${farve.kode}</p>
       `;
 
-        boks.appendChild(farveWrapper);
-        boks.appendChild(info);
-        container.appendChild(boks);
+        boks.appendChild(farveWrapper); // Tilføj farvevisning
+        boks.appendChild(info); // Tilføj infofelt
+        container.appendChild(boks); // Vis i container
 
-        const knap = info.querySelector(".tilfoej-knap-ek");
-        const ikon = knap.querySelector(".ikon-ek");
+        const knap = info.querySelector(".tilfoej-knap-ek"); // Knap til at vælge
+        const ikon = knap.querySelector(".ikon-ek"); // Ikonet (✔ / +)
 
+        // Hvis farven allerede er valgt, vis det
         if (valgteFarver.some(f => f.kode === farve.kode)) {
           knap.classList.add("selected");
           boks.style.backgroundColor = "#f0f0f0";
         }
 
+        // Når man klikker på tilføjknap
         knap.addEventListener("click", function () {
           const alleredeValgt = valgteFarver.some(f => f.kode === farve.kode);
 
@@ -478,11 +501,14 @@
             boks.style.backgroundColor = "#f0f0f0";
           }
 
-          visValgteFarver();
+          visValgteFarver(); // Opdater valgte
         });
       });
     }
 
+    // ----------------------------------------
+    // Funktion: Filtrering baseret på aktive filtre
+    // ----------------------------------------
     function filtrerFarver() {
       const filtreret = colorData.filter(f => {
         return (
@@ -492,9 +518,12 @@
         );
       });
 
-      renderFarver(filtreret);
+      renderFarver(filtreret); // Vis kun de filtrerede farver
     }
 
+    // ----------------------------------------
+    // Funktion: Live-søgning i inputfelt
+    // ----------------------------------------
     input.addEventListener("input", function () {
       const søgning = input.value.toLowerCase();
       const filtreret = colorData.filter(f => {
@@ -506,24 +535,30 @@
                 (f.farvekort && f.farvekort.toLowerCase().includes(søgning))
         );
       });
-      renderFarver(filtreret);
+      renderFarver(filtreret); // Vis resultater
     });
 
+    // ----------------------------------------
+    // Funktion: Gå videre med valgte farver
+    // ----------------------------------------
     tilfoejKnap.addEventListener("click", function () {
       if (valgteFarver.length > 0) {
-        localStorage.setItem("valgteFarver", JSON.stringify(valgteFarver));
-        window.location.href = "main.html";
+        localStorage.setItem("valgteFarver", JSON.stringify(valgteFarver)); // Gem i localStorage
+        window.location.href = "main.html"; // Gå videre
       } else {
         alert("Du skal vælge mindst én farve før du kan fortsætte.");
       }
     });
 
-    // Opret dropdown-indhold til filtre
+    // ----------------------------------------
+    // Funktion: Opret dropdown-filtre
+    // ----------------------------------------
     filters.forEach(filter => {
-      const type = filter.dataset.filter;
+      const type = filter.dataset.filter; // Type (grundfarve, tone, farvekort)
       const dropdown = document.createElement("div");
       dropdown.className = "dropdown-options";
 
+      // Unikke værdier for denne type
       const værdier = [...new Set(colorData.map(f => f[type]).filter(Boolean))];
       værdier.forEach(val => {
         const label = document.createElement("label");
@@ -531,13 +566,14 @@
         checkbox.type = "checkbox";
         checkbox.value = val;
 
+        // Når man vælger/fjerner filter
         checkbox.addEventListener("change", () => {
           if (checkbox.checked) {
             aktiveFiltre[type].add(val);
           } else {
             aktiveFiltre[type].delete(val);
           }
-          filtrerFarver();
+          filtrerFarver(); // Opdater visning
         });
 
         label.appendChild(checkbox);
@@ -547,8 +583,9 @@
 
       filter.appendChild(dropdown);
 
+      // Vis dropdown når der klikkes på filter
       filter.addEventListener("click", (e) => {
-        e.stopPropagation();
+        e.stopPropagation(); // Undgå klik bobler op
         const alleredeÅben = filter.classList.contains("open");
         filters.forEach(f => f.classList.remove("open"));
         if (!alleredeÅben) {
@@ -557,12 +594,243 @@
       });
     });
 
+    // Luk alle dropdowns ved klik udenfor
     document.addEventListener("click", () => {
       filters.forEach(f => f.classList.remove("open"));
     });
 
+    // ----------------------------------------
+    // Init: vis alle farver ved start
+    // ----------------------------------------
     renderFarver(colorData);
   });
+  // Når hele HTML-dokumentet er indlæst og klar
+  document.addEventListener("DOMContentLoaded", function () {
+    // Hent relevante DOM-elementer
+    const container = document.getElementById("farveContainer-ek"); // Beholder til visning af farver
+    const input = document.getElementById("sogInput-ek"); // Søgeinputfelt
+    const popup = document.getElementById("valgPopup-ek"); // Popup-vindue der viser valgte farver
+    const valgteContainer = document.getElementById("valgteFarver-ek"); // Beholder til valgte farver
+    const tilfoejKnap = document.getElementById("tilfoejListe-ek"); // Knap til at tilføje valgte farver og gå videre
+    const filters = document.querySelectorAll(".filter-ek"); // Alle filter-elementer på siden
+
+    // Gemmer valgte farver
+    let valgteFarver = [];
+
+    // Gemmer de aktive filtre for hver filterkategori
+    const aktiveFiltre = {
+      grundfarve: new Set(),
+      farvekort: new Set(),
+      tone: new Set()
+    };
+
+    // ----------------------------------------
+    // Funktion: Vis valgte farver i popup
+    // ----------------------------------------
+    function visValgteFarver() {
+      valgteContainer.innerHTML = ""; // Tøm containeren
+
+      // Hvis ingen farver er valgt, skjul popup
+      if (valgteFarver.length === 0) {
+        popup.classList.add("hidden");
+        return;
+      }
+
+      popup.classList.remove("hidden"); // Vis popup
+
+      // Gennemgå hver valgt farve og opret visning
+      valgteFarver.forEach(f => {
+        const preview = document.createElement("div"); // Visning af farve
+        preview.className = "farve-preview-ek";
+        preview.style.backgroundColor = f.hex;
+
+        const fjern = document.createElement("div"); // Knap til at fjerne farve
+        fjern.className = "fjern-knap-ek";
+        fjern.textContent = "✕";
+
+        // Når man klikker på "✕", fjernes farven
+        fjern.addEventListener("click", function () {
+          valgteFarver = valgteFarver.filter(f2 => f2.kode !== f.kode);
+          visValgteFarver(); // Opdater visning
+          renderFarver(colorData); // Opdater alle farvebokse
+        });
+
+        preview.appendChild(fjern); // Tilføj knap til preview
+        valgteContainer.appendChild(preview); // Vis preview
+      });
+    }
+
+    // ----------------------------------------
+    // Funktion: Render farver i bokse
+    // ----------------------------------------
+    function renderFarver(data) {
+      container.innerHTML = ""; // Ryd eksisterende visning
+
+      data.forEach(farve => {
+        const boks = document.createElement("div"); // Ydre boks
+        boks.className = "farveboks-ek";
+
+        const farveDiv = document.createElement("div"); // Farvefelt
+        farveDiv.className = "farve-ek";
+        farveDiv.style.backgroundColor = farve.hex;
+
+        // Hvis farven er en effekt med tekstur, vis billede
+        if (farve.type === "effekt" && farve.tekstur) {
+          farveDiv.style.backgroundImage = `url(fotos/tekstur3.png)`;
+        }
+
+        const farveWrapper = document.createElement("div"); // Wrapper til placering
+        farveWrapper.style.position = "relative";
+        farveWrapper.appendChild(farveDiv);
+
+        // Infofelt med navn og kode og tilføjknap
+        const info = document.createElement("div");
+        info.className = "info-ek";
+        info.innerHTML = `
+        <div class="info-top-ek">
+          <h4>${farve.navn}</h4>
+          <button class="tilfoej-knap-ek" aria-label="Tilføj farve">
+            <span class="ikon-ek">
+              ${valgteFarver.some(f => f.kode === farve.kode) ? "✔" : "+"}
+            </span>
+          </button>
+        </div>
+        <p>${farve.kode}</p>
+      `;
+
+        boks.appendChild(farveWrapper); // Tilføj farvevisning
+        boks.appendChild(info); // Tilføj infofelt
+        container.appendChild(boks); // Vis i container
+
+        const knap = info.querySelector(".tilfoej-knap-ek"); // Knap til at vælge
+        const ikon = knap.querySelector(".ikon-ek"); // Ikonet (✔ / +)
+
+        // Hvis farven allerede er valgt, vis det
+        if (valgteFarver.some(f => f.kode === farve.kode)) {
+          knap.classList.add("selected");
+          boks.style.backgroundColor = "#f0f0f0";
+        }
+
+        // Når man klikker på tilføjknap
+        knap.addEventListener("click", function () {
+          const alleredeValgt = valgteFarver.some(f => f.kode === farve.kode);
+
+          if (alleredeValgt) {
+            valgteFarver = valgteFarver.filter(f => f.kode !== farve.kode);
+            knap.classList.remove("selected");
+            ikon.textContent = "+";
+            boks.style.backgroundColor = "transparent";
+          } else {
+            valgteFarver.push(farve);
+            knap.classList.add("selected");
+            ikon.textContent = "✔";
+            boks.style.backgroundColor = "#f0f0f0";
+          }
+
+          visValgteFarver(); // Opdater valgte
+        });
+      });
+    }
+
+    // ----------------------------------------
+    // Funktion: Filtrering baseret på aktive filtre
+    // ----------------------------------------
+    function filtrerFarver() {
+      const filtreret = colorData.filter(f => {
+        return (
+                (aktiveFiltre.grundfarve.size === 0 || aktiveFiltre.grundfarve.has(f.grundfarve)) &&
+                (aktiveFiltre.farvekort.size === 0 || aktiveFiltre.farvekort.has(f.farvekort)) &&
+                (aktiveFiltre.tone.size === 0 || aktiveFiltre.tone.has(f.tone))
+        );
+      });
+
+      renderFarver(filtreret); // Vis kun de filtrerede farver
+    }
+
+    // ----------------------------------------
+    // Funktion: Live-søgning i inputfelt
+    // ----------------------------------------
+    input.addEventListener("input", function () {
+      const søgning = input.value.toLowerCase();
+      const filtreret = colorData.filter(f => {
+        return (
+                f.navn.toLowerCase().includes(søgning) ||
+                f.kode.toLowerCase().includes(søgning) ||
+                (f.grundfarve && f.grundfarve.toLowerCase().includes(søgning)) ||
+                (f.tone && f.tone.toLowerCase().includes(søgning)) ||
+                (f.farvekort && f.farvekort.toLowerCase().includes(søgning))
+        );
+      });
+      renderFarver(filtreret); // Vis resultater
+    });
+
+    // ----------------------------------------
+    // Funktion: Gå videre med valgte farver
+    // ----------------------------------------
+    tilfoejKnap.addEventListener("click", function () {
+      if (valgteFarver.length > 0) {
+        localStorage.setItem("valgteFarver", JSON.stringify(valgteFarver)); // Gem i localStorage
+        window.location.href = "main.html"; // Gå videre
+      } else {
+        alert("Du skal vælge mindst én farve før du kan fortsætte.");
+      }
+    });
+
+    // ----------------------------------------
+    // Funktion: Opret dropdown-filtre
+    // ----------------------------------------
+    filters.forEach(filter => {
+      const type = filter.dataset.filter; // Type (grundfarve, tone, farvekort)
+      const dropdown = document.createElement("div");
+      dropdown.className = "dropdown-options";
+
+      // Unikke værdier for denne type
+      const værdier = [...new Set(colorData.map(f => f[type]).filter(Boolean))];
+      værdier.forEach(val => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = val;
+
+        // Når man vælger/fjerner filter
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            aktiveFiltre[type].add(val);
+          } else {
+            aktiveFiltre[type].delete(val);
+          }
+          filtrerFarver(); // Opdater visning
+        });
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(val));
+        dropdown.appendChild(label);
+      });
+
+      filter.appendChild(dropdown);
+
+      // Vis dropdown når der klikkes på filter
+      filter.addEventListener("click", (e) => {
+        e.stopPropagation(); // Undgå klik bobler op - Ved at kalde e.stopPropagation() forhindrer vi hændelsen i at nå document, så dropdownen forbliver åben.
+        const alleredeÅben = filter.classList.contains("open");
+        filters.forEach(f => f.classList.remove("open"));
+        if (!alleredeÅben) {
+          filter.classList.add("open");
+        }
+      });
+    });
+
+    // Luk alle dropdowns ved klik udenfor
+    document.addEventListener("click", () => {
+      filters.forEach(f => f.classList.remove("open"));
+    });
+
+    // ----------------------------------------
+    // Init: vis alle farver ved start
+    // ----------------------------------------
+    renderFarver(colorData);
+  });
+
 </script>
 
 </body>
