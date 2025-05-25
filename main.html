@@ -247,6 +247,80 @@
       justify-content: center;
     }
 
+    .go-to-cart-btn-ej {
+      width: 100%;
+      padding: 18px;
+      background-color: #2333cc;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    .see-similar-btn-ej {
+      width: 100%;
+      padding: 18px;
+      margin: 20px 0;
+      border: 1px solid black;
+      background-color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .ej-button-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .ej-icon-button,
+    .ej-text-button {
+      border: 1px solid #000;
+      background: #fff;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    a{
+      text-decoration: none;
+    }
+
+    .ej-popup {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(255, 255, 255);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ej-popup.ej-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ej-popup-content {
+      max-width: 90%;
+      max-height: 90%;
+      width: auto;
+      height: auto;
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -276,9 +350,30 @@
       <div class="ej-slider" id="ej-slider"></div>
     </div>
   </div>
+
   <img id="ej-mainImage" class="ej-room-image" src="foto/Frame 58.jpg" alt="Room">
   <div id="ej-colorLayer" class="ej-color-layer"></div>
+
+<div class="ej-popup" id="ej-popup">
+  <img src="foto/Group 116.png" class="ej-popup-content" alt="Popup Image">
 </div>
+
+</div>
+
+
+<div class="ej-button-group">
+  <button class="ej-icon-button" id="ej-popupBtn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M16 3h5v5M8 21H3v-5M21 8L3 8M21 16H3"/>
+    </svg>
+  </button>
+  <a href="vælgbillede.html">
+    <button class="ej-text-button">Skift billede</button>
+  </a>
+</div>
+
+
+
 
 <div class="color-row-ek">
     <a href="vælgfarve.html" class="color-box-ek add-box-ek">+</a>
@@ -291,6 +386,11 @@
     <i class="fa-solid fa-chevron-down"></i>
   </div>
   <div id="matchListe-ek" class="match-liste-ek hidden-ek">Klik først på en farve</div>
+</div>
+
+<div>
+  <button class="go-to-cart-btn-ej">Gå til kurven</button>
+  <button class="see-similar-btn-ej">Gem mine farver</button>
 </div>
 
 <script src="database.js"></script>
@@ -405,6 +505,14 @@
     slider.style.left = isDay ? '2px' : '44px';
     slider.style.backgroundColor = isDay ? 'orange' : 'black';
   }
+
+  const popup = document.getElementById("ej-popup");
+  const popupBtn = document.getElementById("ej-popupBtn");
+
+  popupBtn.addEventListener("click", () => {
+    popup.classList.toggle("ej-visible");
+  });
+
 </script>
 </body>
 </html>
