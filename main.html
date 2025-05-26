@@ -102,7 +102,7 @@
       top: 15px;
       left: 15px;
       cursor: pointer;
-      z-index: 10;
+      z-index: 1;
     }
     .ej-toggle-switch {
       position: relative;
@@ -247,16 +247,7 @@
       justify-content: center;
     }
 
-    .go-to-cart-btn-ej {
-      width: 92%;
-      padding: 17px;
-      background-color: #2333cc;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-    }
+
     .see-similar-btn-ej {
       width: 92%;
       padding: 17px;
@@ -319,6 +310,121 @@
       height: auto;
     }
 
+    .ej-icon-button img {
+      width: 19px;
+      height: 19px;
+      object-fit: contain;
+    }
+
+
+
+
+    /* The Modal (background) */
+    .modal-ej {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #myBtn1{
+      width: 92%;
+      padding: 17px;
+      background-color: #2333cc;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+
+    .modal-content-ej {
+      background: white;
+      padding: 4rem;
+      margin-top: 150px;
+      border-radius: 1px;
+      max-width: 250px;
+      width: 90%;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    .color-item-ej {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .color-swatch-ej {
+      width: 40px;
+      height: 40px;
+      border-radius: 1px;
+    }
+
+    .trash-icon {
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .modal-buttons-ej {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      gap: 1rem;
+    }
+
+    .modal-btn-ej {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .modal-btn-ej.cancel {
+      background: white;
+      border: 1px solid black;
+    }
+
+    .modal-btn-ej.confirm {
+      background: #1D3CE5;
+      color: white;
+    }
+
 
 
 
@@ -367,9 +473,7 @@
 
 <div class="ej-button-group">
   <button class="ej-icon-button" id="ej-popupBtn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M16 3h5v5M8 21H3v-5M21 8L3 8M21 16H3"/>
-    </svg>
+    <img src="foto/Compare.png" alt="Ikon" width="20" height="20">
   </button>
   <a href="vælgbillede.html">
     <button class="ej-text-button">Skift billede</button>
@@ -390,13 +494,60 @@
   <div id="matchListe-ek" class="match-liste-ek hidden-ek">Klik først på en farve</div>
 </div>
 
-<div>
-  <button class="ej-button-style go-to-cart-btn-ej">Gå til kurv</button>
-  <button class="see-similar-btn-ej">Gem mine farver</button>
+
+
+<!-- Trigger/Open The Modal = "Gå til kurv" knap og popup -->
+<button id="myBtn1">Gå til kurv</button>
+
+<!-- The Modal -->
+<div id="myModal1" class="modal-ej">
+
+  <!-- Modal content -->
+  <div class="modal-content-ej">
+    <span class="close">&times;</span>
+    <h2>Vil du tilføje disse<br><strong>3 farveprøver</strong> til din kurv</h2>
+
+    <div class="color-item-ej">
+      <div class="color-swatch-ej" style="background-color: #DADAC0;"></div>
+      <div>
+        <strong>Pocket Green</strong><br>
+        FL8067
+      </div>
+      <div>4,95 kr.</div>
+      <div class="trash-icon">🗑️</div>
+    </div>
+
+    <div class="color-item-ej">
+      <div class="color-swatch-ej" style="background-color: #B8C3C6;"></div>
+      <div>
+        <strong>Bornholm</strong><br>
+        FL8040
+      </div>
+      <div>4,95 kr.</div>
+      <div class="trash-icon">🗑️</div>
+    </div>
+
+    <div class="color-item-ej">
+      <div class="color-swatch-ej" style="background-color: #4E5A44;"></div>
+      <div>
+        <strong>Lund</strong><br>
+        FL8067
+      </div>
+      <div>4,95 kr.</div>
+      <div class="trash-icon">🗑️</div>
+    </div>
+
+    <div class="modal-buttons-ej">
+      <button class="modal-btn-ej cancel">Nej</button>
+      <button class="modal-btn-ej confirm">Ja</button>
+    </div>
+  </div>
 </div>
 
 
-
+<div>
+  <button class="see-similar-btn-ej">Gem mine farver</button>
+</div>
 
 
 
@@ -524,8 +675,47 @@
 
 
 
+  //Dette er til den første popup model "Gå til kurv"
+  // Get the modal
+  var modal = document.getElementById("myModal1");
 
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn1");
 
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Hent knapperne
+  const cancelButton = document.querySelector('.modal-btn-ej.cancel');
+  const confirmButton = document.querySelector('.modal-btn-ej.confirm');
+
+  // Luk modal, når man klikker "Nej"
+  cancelButton.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+
+  // Luk modal, når man klikker "Ja"
+  confirmButton.addEventListener('click', function () {
+    modal.style.display = 'none';
+    // Her kan du evt. tilføje funktionalitet til at gå til kurven
+  });
 
 
 
