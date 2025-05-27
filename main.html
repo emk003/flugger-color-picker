@@ -475,6 +475,59 @@
       color: white;
     }
 
+
+
+
+    /* Dette er "Gem mine farver" knap*/
+    /* Centrerer teksten inde i popup'en */
+    .email-modal {
+      text-align: center;
+    }
+
+    /* Styling af overskriften */
+    .email-modal h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Styling af den lille forklarende tekst */
+    .email-modal p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Label før inputfeltet */
+    .email-modal label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Styling af selve inputfeltet */
+    #user_email {
+      width: 80%; /* Gør feltet næsten fuld bredde */
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+
+    /* Styling af send-knappen */
+    #sendEmail {
+      background-color: #1C2DD8; /* Blå farve */
+      color: white;              /* Hvid tekst */
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;           /* Gør musen til hånd ved hover */
+      margin-top: 5px;
+    }
+
+
+
   </style>
 </head>
 
@@ -511,32 +564,55 @@
 </div>
 
 
+
+<!-- Container til hele visningen -->
 <div class="ej-container">
+
+  <!-- Toggle-knap til at skifte mellem dag og nat -->
   <div class="ej-toggle-button" onclick="toggleDayNight()">
     <div class="ej-toggle-switch">
+
+      <!-- Sol-ikonet (dag) -->
       <span class="ej-icon"><i class="fa-solid fa-sun"></i></span>
+
+      <!-- Måne-ikonet (nat) -->
       <span class="ej-icon"><i class="fa-solid fa-moon"></i></span>
+
+      <!-- Den lille skyder som bevæger sig mellem dag og nat -->
       <div class="ej-slider" id="ej-slider"></div>
     </div>
   </div>
 
+  <!-- Hovedbilledet af rummet -->
   <img id="ej-mainImage" class="ej-room-image" src="foto/Frame 58.jpg" alt="Room">
+
+  <!-- Lag oven på billedet, som f.eks. kan bruges til at lægge farve på væggen -->
   <div id="ej-colorLayer" class="ej-color-layer"></div>
 
-<div class="ej-popup" id="ej-popup">
-  <img src="foto/Group 116.png" class="ej-popup-content" alt="Popup Image">
-</div>
+  <!-- Popup der kan vises oven på billedet -->
+  <div class="ej-popup" id="ej-popup">
+    <!-- Indholdet af popup'en: et billede af farve swatches -->
+    <img src="foto/Group 116.png" class="ej-popup-content" alt="Popup Image">
+  </div>
 
 </div>
 
 
+<!-- En container, der samler de to knapper i en gruppe -->
 <div class="ej-button-group">
+
+  <!-- En knap med et ikon (f.eks. brugt til at åbne en popup) -->
   <button class="ej-icon-button" id="ej-popupBtn">
+    <!-- Ikonets billede (et sammenlignings-ikon) -->
     <img src="foto/Compare.png" alt="Ikon" width="20" height="20">
   </button>
+
+  <!-- Et link, som leder brugeren til en ny side -->
   <a href="vælgbillede.html">
+    <!-- En knap med tekst, som ligger inde i linket, så hele knappen fungerer som et link -->
     <button class="ej-text-button">Skift billede</button>
   </a>
+
 </div>
 
 
@@ -564,27 +640,38 @@
 
 
 
-<!-- Trigger/Open The Modal = "Gå til kurv" knap og popup -->
+
+<!-- Knap, der åbner en popup (modal). Når brugeren klikker, vises en dialogboks -->
 <button id="myBtn1">Gå til kurv</button>
 
-<!-- The Modal -->
+<!-- Selve popup-vinduet (modal), som starter skjult -->
 <div id="myModal1" class="modal-ej">
 
-  <!-- Modal content -->
+  <!-- Indholdet i popup-vinduet -->
   <div class="modal-content-ej">
+
+    <!-- Luk-knap (kryds øverst i højre hjørne) -->
     <span class="close">&times;</span>
+
+    <!-- Overskrift med besked til brugeren -->
     <h2>Vil du tilføje disse<br><strong>3 farveprøver</strong> til din kurv</h2>
 
+    <!-- Første farveprøve -->
     <div class="color-item-ej">
+      <!-- Lille firkant med farve -->
       <div class="color-swatch-ej" style="background-color: #DADAC0;"></div>
+      <!-- Farvens navn og kode -->
       <div>
         <strong>Pocket Green</strong><br>
         FL8067
       </div>
+      <!-- Pris -->
       <div>4,95 kr.</div>
+      <!-- Ikon til at slette (visuelt, kræver JS for funktionalitet) -->
       <div class="trash-icon">🗑️</div>
     </div>
 
+    <!-- Anden farveprøve -->
     <div class="color-item-ej">
       <div class="color-swatch-ej" style="background-color: #B8C3C6;"></div>
       <div>
@@ -595,6 +682,7 @@
       <div class="trash-icon">🗑️</div>
     </div>
 
+    <!-- Tredje farveprøve -->
     <div class="color-item-ej">
       <div class="color-swatch-ej" style="background-color: #4E5A44;"></div>
       <div>
@@ -605,17 +693,47 @@
       <div class="trash-icon">🗑️</div>
     </div>
 
+    <!-- Knapper i bunden af popup’en -->
     <div class="modal-buttons-ej">
+      <!-- Nej-knap (lukker popup uden handling) -->
       <button class="modal-btn-ej cancel">Nej</button>
+      <!-- Ja-knap (tilføjer til kurv – funktion skal kodes med JS) -->
       <button class="modal-btn-ej confirm">Ja</button>
     </div>
+
   </div>
 </div>
 
 
-<div>
-  <button class="see-similar-btn-ej">Gem mine farver</button>
+
+<!-- Knap der åbner email-popuppen -->
+<button id="myBtn2" class="see-similar-btn-ej">Gem dine farver</button>
+
+<!-- Modal popup til at gemme farver -->
+<div id="myModal2" class="modal-ej">
+  <div class="modal-content-ej email-modal">
+
+    <!-- Luk-knap (x) -->
+    <span class="close close2">&times;</span>
+
+    <!-- Overskrift -->
+    <h2>Gem dine farver</h2>
+
+    <!-- Beskrivende tekst -->
+    <p>Indtast din email, så sender dine gemte farver, samt et billede af dit design til dig</p>
+
+    <!-- Label og inputfelt til email -->
+    <label for="user_email">Indtast email:</label>
+    <input type="email" id="user_email" placeholder="..." />
+
+    <!-- Send-knap -->
+    <button id="sendEmail">Send mine farver til mig</button>
+  </div>
 </div>
+
+
+
+
 
 
 <script src="database.js"></script>
@@ -779,28 +897,52 @@
     });
   });
 
+
+
   // Hjælpefunktion til at konvertere RGB-farve til HEX-format
   function rgbToHex(rgb) {
     const result = rgb.match(/\d+/g);
     return "#" + result.map(x => parseInt(x).toString(16).padStart(2, "0")).join("").toUpperCase();
   }
 
+
+
+  // Variabel til at holde styr på om det er dag eller nat. Starter som 'dag'.
   let isDay = true;
+
+  // Funktion der skifter mellem dag- og natvisning
   function toggleDayNight() {
+    // Henter billedet af rummet
     const image = document.getElementById('ej-mainImage');
+
+    // Henter slider-elementet i knappen (den runde prik)
     const slider = document.getElementById('ej-slider');
+
+    // Skifter isDay fra true til false (eller omvendt)
     isDay = !isDay;
+
+    // Skifter billedet afhængig af om det er dag eller nat
     image.src = isDay ? 'foto/Frame 58.jpg' : 'foto/Group 115.jpg';
+
+    // Flytter slider-prikken til venstre (dag) eller højre (nat)
     slider.style.left = isDay ? '2px' : '44px';
+
+    // Skifter sliderens farve til orange (dag) eller sort (nat)
     slider.style.backgroundColor = isDay ? 'orange' : 'black';
   }
 
+
+
+
+  //Dette er popupen som sider fast på baggrundsbilledet
   const popup = document.getElementById("ej-popup");
   const popupBtn = document.getElementById("ej-popupBtn");
 
+  // Når der klikkes på knappen, skifter vi mellem at vise og skjule popup'en
   popupBtn.addEventListener("click", () => {
     popup.classList.toggle("ej-visible");
   });
+
 
 
 
@@ -846,6 +988,54 @@
     // Her kan du evt. tilføje funktionalitet til at gå til kurven
   });
 
+
+
+
+
+   //Dette er "Gem mine farver" knap
+    // Hent modal-elementet
+    const modal2 = document.getElementById("myModal2");
+
+    // Hent knappen der åbner popup'en
+    const btn2 = document.getElementById("myBtn2");
+
+    // Hent "luk" X-ikonet
+    const span2 = document.querySelector(".close2");
+
+    // Hent selve inputfeltet
+    const emailInput = document.getElementById("user_email");
+
+    // Når man klikker på knappen "Gem dine farver"
+    btn2.onclick = function () {
+    modal2.style.display = "block"; // Vis popup'en
+  };
+
+    // Når man klikker på X (luk-knappen)
+    span2.onclick = function () {
+    modal2.style.display = "none"; // Skjul popup'en
+  };
+
+    // Hvis man klikker uden for popup'en (på baggrunden)
+    window.onclick = function (event) {
+    if (event.target === modal2) {
+    modal2.style.display = "none"; // Skjul popup'en
+  }
+  };
+
+    // Når man klikker på "Send mine farver til mig"-knappen
+    document.getElementById("sendEmail").onclick = function () {
+    const email = emailInput.value; // Gem hvad brugeren har skrevet i inputfeltet
+
+    if (email) {
+    // Her kan du indsætte EmailJS kode hvis ønsket
+    console.log("Sender email til:", email);
+
+    emailInput.value = "";         // Tøm inputfeltet
+    modal2.style.display = "none"; // Luk popup'en
+  } else {
+    alert("Indtast en gyldig e-mail"); // Fejlbesked hvis feltet er tomt
+  }
+  };
 
 
 </script>

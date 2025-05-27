@@ -22,7 +22,7 @@
         header {
             background-color: #fff;
         }
-
+        /* Øverste USP bar */
         .USP-bar-ek {
             background-color: #363433;
             padding: 0.5rem 0.5rem;
@@ -30,7 +30,7 @@
             font-size: 0.9rem;
             color: white;
         }
-
+        /* Container der holder logo og ikoner i headeren */
         .header-indhold-ek {
             display: flex;
             justify-content: space-between;
@@ -38,18 +38,20 @@
             padding: 1rem 2rem;
             background-color: white;
         }
-
+        /* Styling for logoet i headeren */
         .logo-ek {
             max-width: 150px;
             height: auto;
         }
 
+        /* Holder søge-, kurv- og menuikoner – justeret med afstand og størrelse */
         .ikoner-ek {
             display: flex;
             gap: 1rem;
             font-size: 1.8rem;
         }
 
+        /* Container til de to visningsvalg: "vælg farve" og "farvelæg" */
         .valg-ek {
             display: flex;
             justify-content: center;
@@ -59,35 +61,35 @@
             margin-top: 2rem;
         }
 
+        /* Lodret sort streg der adskiller valgene i valgmenuen */
         .opdeler-ek {
             width: 1px;
             align-self: stretch;
             background-color: black;
         }
 
+        /* Den aktive valgmulighed ("vælg farve") vises med understregning */
         .valgt-ek {
             border-bottom: 2px solid #000;
             padding-bottom: 0.2rem;
         }
 
+        /* Den inaktive valgmulighed ("farvelæg") vises uden understregning */
         .ikke-valgt-ek {
             font-weight: normal;
         }
 
+        /* Teksten "Upload dit billede */
         h2 {
             font-size: 18px;
             margin-bottom: 20px;
         }
-
+        /* Containeren til upload billede*/
         .upload-container {
             margin-top: 50px;
         }
 
-        .upload-icon {
-            font-size: 60px;
-            margin-bottom: 30px;
-        }
-
+        /*Knappen upload billede */
         .upload-button {
             display: inline-block;
             padding: 12px 20px;
@@ -97,8 +99,10 @@
             border-radius: 1px;
             background-color: white;
             cursor: pointer;
+            margin-top: 20px;
         }
 
+        /* Syling til selve popupen */
         .popup {
             display: none;
             position: fixed;
@@ -112,45 +116,55 @@
             z-index: 1000;
         }
 
+        /* Indholdet i selve popupen */
         .popup-content {
             background: white;
             padding: 30px;
-            border-radius: 10px;
             width: 80%;
             max-width: 300px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-
+        /* teksten upload billede */
         .popup-content h3 {
             margin-bottom: 20px;
         }
 
+        /* Luk knap i popupen */
         .close-btn {
             background: black;
             color: white;
             border: none;
             padding: 10px 16px;
             cursor: pointer;
-            border-radius: 5px;
         }
-
+        /* Input "File" */
         #uploadedImage {
             display: none;
             max-width: 100%;
             border: 1px solid #ccc;
-            border-radius: 5px;
             margin-top: 10px;
         }
+
+        /* Upload ikonet  */
+        .upload-ikon{
+            font-size: 60px;
+            display: block;
+            margin: auto;
+            width: 100px;
+        }
+
     </style>
 </head>
 
 <body>
+
+<!-- Header-->
 <header>
     <div class="USP-bar-ek">
         <p>30 dages returret</p>
     </div>
-
+    <!-- Flügger logo og ikoner -->
     <div class="header-indhold-ek">
         <img class="logo-ek" src="fotos/logo.png" alt="logo" />
         <div class="ikoner-ek">
@@ -160,24 +174,27 @@
         </div>
     </div>
 </header>
-
+<!-- Vælg farve og farvelæg-->
 <div class="valg-ek">
     <h2 class="valgt-ek">Vælg farve</h2>
     <div class="opdeler-ek"></div>
     <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
 
+<!-- Titel: Upload billede-->
 <h2>Upload dit billede</h2>
 
+<!--Container med kamera ikon og knap som åbner popup onclick -->
 <div class="upload-container">
-    <div class="upload-icon">📷🔍</div>
+    <img alt="kamera ikon" class="upload-ikon" src="foto/Camera%20Identification.png">
     <button class="upload-button" onclick="openPopup()">Klik her for at uploade billede</button>
 </div>
 
-<!-- Popup Modal -->
+<!-- Popup Modal med input type "File"-->
 <div class="popup" id="popup">
     <div class="popup-content">
         <h3>Upload billede</h3>
+        <!-- Åbner ens filer. Ved valgt billede kan man previewe billedet og derefter lukke popupen-->
         <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" /><br /><br />
         <img id="uploadedImage" alt="Forhåndsvisning" /><br />
         <button class="close-btn" onclick="closePopup()">Upload</button>
