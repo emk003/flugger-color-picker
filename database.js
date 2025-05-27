@@ -1,4 +1,4 @@
-// colors.js
+
 const colorData = [
     {
         id: "FL8005-01",
