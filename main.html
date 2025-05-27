@@ -18,26 +18,34 @@
     header {
       background-color: white;
     }
+    /* Øverste USP bar */
     .ej-USP-bar-ek {
       background-color: #363433;
       padding: 0.5rem;
       color: white;
     }
+
+    /* Container der holder logo og ikoner i headeren */
     .ej-header-indhold-ek {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
     }
+
+    /* Styling for logoet i headeren */
     .ej-logo-ek {
       max-width: 150px;
     }
+
+    /* Holder søge-, kurv- og menuikoner – justeret med afstand og størrelse */
     .ej-ikoner-ek {
       display: flex;
       gap: 1rem;
       font-size: 1.8rem;
     }
-    /* Topmenu til valg ("vælg farve" / "farvelæg") */
+
+    /* Container til de to visningsvalg: "vælg farve" og "farvelæg" */
     .valg-ek {
       display: flex;
       justify-content: center;
@@ -47,24 +55,25 @@
       margin-top: 2rem;
     }
 
-    /* Lodret streg mellem valg */
+    /* Lodret sort streg der adskiller valgene i valgmenuen */
     .opdeler-ek {
       width: 1px;
       align-self: stretch;
       background-color: black;
     }
 
-    /* Den valgte sektion får understregning */
+    /* Den aktive valgmulighed ("vælg farve") vises med understregning */
     .valgt-ek {
       border-bottom: 2px solid #000;
       padding-bottom: 0.2rem;
     }
 
-    /* Ikke-valgte er normal i stilen */
+    /* Den inaktive valgmulighed ("farvelæg") vises uden understregning */
     .ikke-valgt-ek {
       font-weight: normal;
     }
 
+    /* Fjerner understregning og bruger arvet tekstfarve for linket i den valgte menu */
     .valgt-ek a {
       text-decoration: none;
       color: inherit;
@@ -130,6 +139,8 @@
       border-radius: 50%;
       transition: left 0.5s ease, background-color 0.3s ease;
     }
+
+    /* Wrapper til hele rækken af farvebokse brugeren har valgt */
     .color-wrapper-ek {
       display: flex;
       flex-direction: row;
@@ -137,18 +148,22 @@
       flex-grow: 1;
     }
 
+    /* Række der indeholder farvebokse og knap til at tilføje nye */
     .color-row-ek {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 1rem;
-      overflow-x: auto;
+      overflow-x: auto; /* Vis en vandret scrollbar automatisk, hvis indholdet bliver bredere end containeren*/
     }
 
+
+    /* Bruges til at forhindre "+"-boksen i at skrumpe ved mange elementer */
     .add-box-ek {
       flex-shrink: 0;
     }
 
+    /* Standard-styling for en farveboks */
     .color-box-ek {
       width: 80px;
       height: 80px;
@@ -165,13 +180,25 @@
       background-size: cover;
       background-position: center;
     }
+
+    /* Udvidet version af farveboksen når den er valgt */
     .color-box-ek.expanded-ek {
       width: 220px;
       align-items: flex-start;
       justify-content: flex-start;
     }
-    .icon-ek { font-size: 24px; }
-    .color-box-ek.expanded-ek .icon-ek { opacity: 0; }
+
+    /* Ikonet der vises inde i farveboksen (pensel) */
+    .icon-ek {
+      font-size: 24px;
+    }
+
+    /* Ikonet skjules, når farveboksen er udvidet */
+    .color-box-ek.expanded-ek .icon-ek {
+      opacity: 0;
+    }
+
+    /* Infofelt med navn og farvekode – vises i nederste venstre hjørne */
     .info-ek {
       position: absolute;
       bottom: 10px;
@@ -181,7 +208,13 @@
       color: white;
       text-align: left;
     }
-    .color-box-ek.expanded-ek .info-ek { display: block; }
+
+    /* Infofeltet vises, når boksen er udvidet */
+    .color-box-ek.expanded-ek .info-ek {
+      display: block;
+    }
+
+    /* Skraldespand-ikon til at fjerne farve – placeret i øverste højre hjørne */
     .trash-ek {
       position: absolute;
       top: 8px;
@@ -190,25 +223,36 @@
       display: none;
       color: white;
     }
-    .color-box-ek.expanded-ek .trash-ek { display: block; }
 
+    /* Skraldespanden vises kun når boksen er udvidet */
+    .color-box-ek.expanded-ek .trash-ek {
+      display: block;
+    }
+
+    /* Sektion der indeholder overskrift og liste med lignende farver */
     .match-sektion-ek {
       margin: 1rem auto;
       padding: 1rem;
       max-width: 83%;
       border: 1px solid black;
     }
+
+    /* Klikbar overskrift – bruges til at vise/skjule match-liste */
     .match-toggle-ek {
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
     }
+
+    /* Container til lignende farver – vises som små bokse */
     .match-liste-ek {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
+
+    /* En boks som repræsenterer en lignende farve */
     .similar-color-ek {
       width: 70px;
       height: 70px;
@@ -220,11 +264,12 @@
       margin-top: 1rem;
     }
 
+    /* "+"-ikon i midten af en lignende farveboks, som kan tilføjes */
     .plus-icon-ek {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); /* flytter på elementet*/
       font-size: 1.5rem;
       color: black;
       background: rgba(255,255,255,0.8);
@@ -234,8 +279,13 @@
       text-align: center;
       line-height: 24px;
     }
-    .hidden-ek { display: none; }
 
+    /* Gør det muligt at skjule et element via JavaScript */
+    .hidden-ek {
+      display: none;
+    }
+
+    /* Ekstra styling til "+"-boksen – gør den synlig og klikbar */
     .add-box-ek {
       background-color: white;
       color: black;
@@ -425,38 +475,47 @@
       color: white;
     }
 
-
-
-
-
-
-
   </style>
 </head>
+
 <body>
+<!-- Sidehoved / headersektion -->
 <header>
+
+  <!-- En USP bar øverst -->
   <div class="ej-USP-bar-ek">30 dages returret</div>
+
+  <!-- Container med logo og ikoner til fx søgning og kurv -->
   <div class="ej-header-indhold-ek">
+
+    <!-- Logo-billede i venstre side -->
     <img class="ej-logo-ek" src="fotos/logo.png" alt="logo">
+
+    <!-- Ikoner til søgning, kurv og menu i højre side -->
     <div class="ej-ikoner-ek">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <i class="fa-solid fa-basket-shopping"></i>
-      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-magnifying-glass"></i>   <!-- Søg -->
+      <i class="fa-solid fa-basket-shopping"></i>    <!-- Kurv -->
+      <i class="fa-solid fa-bars"></i>               <!-- Menu -->
     </div>
   </div>
 </header>
 
+<!-- Sektion til valg af visning (farvevælger eller farvelæg) -->
 <div class="valg-ek">
+  <!-- Valgmulighed "Vælg farve" – aktiv/valgt -->
   <h2 class="valgt-ek"><a href="vælgfarve.html">Vælg farve</a></h2>
+  <!-- Lodret streg der adskiller de to valg -->
   <div class="opdeler-ek"></div>
+  <!-- Valgmulighed "Farvelæg" – inaktiv (ikke valgt) -->
   <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
+
 
 <div class="ej-container">
   <div class="ej-toggle-button" onclick="toggleDayNight()">
     <div class="ej-toggle-switch">
-      <span class="ej-icon">☀️</span>
-      <span class="ej-icon">🌙</span>
+      <span class="ej-icon"><i class="fa-solid fa-sun"></i></span>
+      <span class="ej-icon"><i class="fa-solid fa-moon"></i></span>
       <div class="ej-slider" id="ej-slider"></div>
     </div>
   </div>
@@ -481,16 +540,25 @@
 </div>
 
 
+<!-- Container der indeholder rækken med farvebokse -->
 <div class="color-row-ek">
-    <a href="vælgfarve.html" class="color-box-ek add-box-ek">+</a>
-    <div class="color-wrapper-ek" id="colorWrapper-ek"></div>
+  <!-- En boks med "+" som link – bruges til at tilføje en ny farve (går til 'vælgfarve.html') -->
+  <a href="vælgfarve.html" class="color-box-ek add-box-ek">+</a>
+  <!-- Tom container hvor valgte farver bliver indsat dynamisk via JavaScript -->
+  <div class="color-wrapper-ek" id="colorWrapper-ek"></div>
 </div>
 
+
+<!-- Sektion som viser lignende farver til den valgte farve -->
 <div class="match-sektion-ek">
+  <!-- Klikbar overskrift – når man klikker, vises eller skjules listen nedenunder -->
   <div id="matchToggle-ek" class="match-toggle-ek">
+    <!-- Tekst der vises for brugeren -->
     <span>Se lignende farver</span>
+    <!-- Pile-ikon som peger ned (ændres til op når listen vises) -->
     <i class="fa-solid fa-chevron-down"></i>
   </div>
+  <!-- Container som viser farveforslag – er skjult som standard med 'hidden-ek' -->
   <div id="matchListe-ek" class="match-liste-ek hidden-ek">Klik først på en farve</div>
 </div>
 
@@ -550,107 +618,168 @@
 </div>
 
 
-
-
-
 <script src="database.js"></script>
 <script>
+  // Finder HTML-elementet hvor farveboksene skal vises
   const wrapper = document.getElementById("colorWrapper-ek");
+
+  // Finder knappen der bruges til at åbne/lukke listen med lignende farver
   const matchToggle = document.getElementById("matchToggle-ek");
+
+  // Finder selve containeren som viser de lignende farver
   const matchListe = document.getElementById("matchListe-ek");
+
+  // Henter farvelaget der ligger over billedet (bruges til at vise valgt farve)
   const layer = document.getElementById("ej-colorLayer");
 
+  // Henter farver brugeren tidligere har valgt fra lokal lagring, eller starter med tom liste
   const farver = JSON.parse(localStorage.getItem("valgteFarver")) || [];
 
+  // Funktion til at sætte baggrundsfarven på farvelaget til den valgte farve
   function setColor(color) {
     layer.style.backgroundColor = color;
   }
 
+  // Gennemgår hver farve brugeren har valgt, og opretter en visuel boks til den
   farver.forEach(f => {
+    // Opretter en div som skal vise farven
     const box = document.createElement("div");
-    box.className = "color-box-ek";
+    box.className = "color-box-ek"; // Tildeler klassen så stilen passer
+
+    // Sætter baggrundsfarven i boksen til farvens hex-kode
     box.style.backgroundColor = f.hex;
+
+    // Hvis farven er en effekt-farve og har tekstur, så vises den som billede
     if (f.type === "effekt" && f.tekstur) {
       box.style.backgroundImage = `url(${f.tekstur})`;
       box.style.backgroundBlendMode = "multiply";
     }
+
+    // Tilføjer et ikon (pensel) inde i boksen for at vise den kan bruges til farvelægning
     const icon = document.createElement("div");
     icon.className = "icon-ek";
     icon.innerHTML = '<i class="fa-solid fa-brush"></i>';
+
+    // Viser navnet og farvekoden i boksen
     const info = document.createElement("div");
     info.className = "info-ek";
     info.innerHTML = `<strong>${f.navn}</strong><br>${f.kode}`;
+
+    // Opretter en skraldespand for at kunne fjerne farven
     const trash = document.createElement("div");
     trash.className = "trash-ek";
     trash.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+    // Når man klikker på skraldespanden, fjernes farven fra listen og siden genindlæses
     trash.addEventListener("click", e => {
-      e.stopPropagation();
+      e.stopPropagation(); // Forhindrer at klik aktiverer andet (som at åbne boksen)
       const nyeFarver = farver.filter(farve => farve.kode !== f.kode);
       localStorage.setItem("valgteFarver", JSON.stringify(nyeFarver));
       location.reload();
     });
+
+    // Når man klikker på farveboksen, vises den som valgt og sætter farven
     box.addEventListener("click", () => {
       document.querySelectorAll(".color-box-ek.expanded-ek").forEach(b => b !== box && b.classList.remove("expanded-ek"));
-      box.classList.toggle("expanded-ek");
-      setColor(f.hex);
+      box.classList.toggle("expanded-ek"); // Udvider eller lukker boksen
+      setColor(f.hex); // Opdaterer farvelagets farve
     });
+
+    // Tilføjer ikon, info og skraldespand til farveboksen
     box.appendChild(icon);
     box.appendChild(info);
     box.appendChild(trash);
+
+    // Tilføjer hele farveboksen til wrapper-elementet
     wrapper.appendChild(box);
   });
 
+  // Klik på "Se lignende farver" åbner eller lukker listen med forslag
   matchToggle.addEventListener("click", () => {
-    const aktivBoks = document.querySelector(".color-box-ek.expanded-ek");
+    const aktivBoks = document.querySelector(".color-box-ek.expanded-ek"); // Finder den valgte farveboks
     const ikon = matchToggle.querySelector("i");
+
+    // Hvis listen allerede er synlig, skjules den og pil-ikon ændres
     if (!matchListe.classList.contains("hidden-ek")) {
       matchListe.classList.add("hidden-ek");
       ikon.classList.remove("fa-chevron-up");
       ikon.classList.add("fa-chevron-down");
       return;
     }
+
+    // Hvis ingen farve er valgt, vises en besked til brugeren
     if (!aktivBoks) {
       matchListe.innerHTML = "<em>Vælg først en farve ovenover</em>";
       matchListe.classList.remove("hidden-ek");
       return;
     }
+
+    // Finder baggrundsfarven fra den valgte farveboks og omdanner til hex
     const rgb = getComputedStyle(aktivBoks).backgroundColor;
     const aktivHex = rgbToHex(rgb);
+
+    // Finder dataen for den valgte farve
     const aktivData = farver.find(f => f.hex.toUpperCase() === aktivHex);
+
+    // Hvis ingen data findes (burde ikke ske), vis fejlbesked
     if (!aktivData) {
       matchListe.innerHTML = "<em>Vi fandt desværre ikke en lignende farve</em>";
       return;
     }
+
+    // Filtrerer farver som har samme grundfarve og viser op til 4 lignende
     const lignende = colorData.filter(f => f.kode !== aktivData.kode && f.grundfarve === aktivData.grundfarve).slice(0, 4);
     matchListe.innerHTML = "";
     matchListe.classList.remove("hidden-ek");
     ikon.classList.remove("fa-chevron-down");
     ikon.classList.add("fa-chevron-up");
+
+    // Gennemgår hver farve i arrayet 'lignende'
     lignende.forEach(f => {
+      // Opretter et nyt <div>-element, som skal vise en lignende farve
       const box = document.createElement("div");
+      // Tildeler boksen en klasse, så den får den rette styling (lille firkant med farve)
       box.className = "similar-color-ek";
+      // Sætter baggrundsfarven på boksen til farvens hex-værdi
       box.style.backgroundColor = f.hex;
+      // Hvis farven er en effektfarve OG har en tilknyttet tekstur
       if (f.type === "effekt" && f.tekstur) {
+        // Tilføjer en baggrundsbillede (tekstur) til boksen
         box.style.backgroundImage = `url(${f.tekstur})`;
+        // Gør det muligt at se både farve og tekstur samtidigt ved at blande dem
         box.style.backgroundBlendMode = "multiply";
       }
+
+      // Opretter "+" ikon som brugeren kan klikke på for at tilføje farven
       const plus = document.createElement("div");
       plus.className = "plus-icon-ek";
       plus.textContent = "+";
+
+      // Når brugeren klikker på plusset, tilføjes farven til lokale farver og siden genindlæses
+      // Tilføjer en event listener til plus-ikonet, så der sker noget ved klik
       plus.addEventListener("click", e => {
+        // Stopper eventen fra at sprede sig til overordnede elementer (så klik kun gælder her)
         e.stopPropagation();
+        // Henter tidligere gemte farver fra localStorage, eller starter med tom liste hvis ingen findes
         const gemte = JSON.parse(localStorage.getItem("valgteFarver")) || [];
+        // Tjekker om den aktuelle farve allerede findes i den gemte liste (via farvekode)
         if (!gemte.find(v => v.kode === f.kode)) {
+          // Tilføjer den nye farve til listen, fordi den ikke allerede findes
           gemte.push(f);
+          // Gemmer den opdaterede liste tilbage i localStorage i JSON-format
           localStorage.setItem("valgteFarver", JSON.stringify(gemte));
+
+          // Genindlæser siden så ændringerne vises med det samme
           location.reload();
         }
       });
+
       box.appendChild(plus);
       matchListe.appendChild(box);
     });
   });
 
+  // Hjælpefunktion til at konvertere RGB-farve til HEX-format
   function rgbToHex(rgb) {
     const result = rgb.match(/\d+/g);
     return "#" + result.map(x => parseInt(x).toString(16).padStart(2, "0")).join("").toUpperCase();
