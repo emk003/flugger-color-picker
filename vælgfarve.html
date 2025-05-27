@@ -82,49 +82,59 @@
         font-weight: normal;
     }
 
+    /* Wrapper der centrerer indholdet vandret med flexbox */
     .wrapper {
         display: flex;
         justify-content: center;
     }
 
+    /* Kortet (boks) med farvevalg – indeholder billede og tekst */
     .color-card {
-        width: 80%;
-        height: 150px; /*højden på hele boksen*/
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        background: white;
-        margin: 1rem;
+        width: 80%; /* Kortet fylder 80% af wrapperens bredde */
+        height: 150px; /* Højden på hele boksen */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Let skygge omkring kortet for dybdeeffekt */
+        background: white; /* Baggrundsfarve */
+        margin: 1rem; /* Luft omkring kortet */
     }
 
+    /* Billedet i toppen af kortet */
     .card-image {
-        width: 100%;
-        display: block;
-        object-fit: cover;
-        height: 50%;
-    }
-    .card-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
+        width: 100%; /* Fylder hele bredden af kortet */
+        display: block; /* Fjerner mellemrum under billedet */
+        object-fit: cover;  /* Billedet dækker hele området uden at blive forvrænget */
+        height: 50%; /* Fylder halvdelen af kortets højde */
     }
 
+    /* Indhold i nederste halvdel af kortet (tekst + pil) */
+    .card-content {
+        display: flex; /* Indholdet placeres i en række */
+        justify-content: space-between; /* Teksten til venstre, pil til højre */
+        align-items: center; /* Vertikal centrering */
+        padding: 1rem; /* Indvendig afstand */
+    }
+
+    /* Pil-ikonet til højre */
     .card-icon {
         font-size: 1.2rem;
         color: #333;
     }
 
+    /* Styling for links – fjerner understregning og bevarer farven fra omgivelserne */
     a {
-        text-decoration: none; /*Fjerner understregning.*/
-        color: inherit; /*Linket arver farven fra forældre-elementet (så det ikke bliver blåt).*/
+        text-decoration: none;
+        color: inherit;
     }
 
 </style>
 
 <body>
 <header>
+    <!-- Øverste bar med salgstekst -->
     <div class="USP-bar-ek">
         <p>30 dages returret</p>
     </div>
+
+    <!-- Header-indhold med logo og ikoner -->
     <div class="header-indhold-ek">
         <img class="logo-ek" src="fotos/logo.png" alt="logo">
         <div class="ikoner-ek">
@@ -135,12 +145,19 @@
     </div>
 </header>
 
+<!-- Topmenu hvor brugeren vælger mellem sektioner -->
 <div class="valg-ek">
+    <!-- Den aktive valgmulighed -->
     <h2 class="valgt-ek">Vælg farve</h2>
+
+    <!-- Lodret skillelinje mellem valgmuligheder -->
     <div class="opdeler-ek"></div>
+
+    <!-- Den inaktive valgmulighed med link -->
     <h2 class="ikke-valgt-ek"><a href="main.html">Farvelæg</a></h2>
 </div>
 
+<!-- Kort 1 – viser "Alle farver" -->
 <div class="wrapper">
     <a href="allefarver.html" class="color-card">
         <img src="fotos/allefarver.jpg" alt="Farvekort" class="card-image">
@@ -151,6 +168,7 @@
     </a>
 </div>
 
+<!-- Kort 2 – valg ud fra produkt -->
 <div class="wrapper">
     <div class="color-card">
         <img src="fotos/udfraprodukt.jpg" alt="Farvekort" class="card-image">
@@ -161,6 +179,7 @@
     </div>
 </div>
 
+<!-- Kort 3 – identificer farve via billede -->
 <div class="wrapper">
     <div class="color-card">
         <img src="fotos/udfrabilled.jpg" alt="Farvekort" class="card-image">
