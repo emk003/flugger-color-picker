@@ -10,98 +10,104 @@
 </head>
 
 <style>
+  /* Nulstiller margin og padding for alle elementer og sikrer korrekt box-sizing */
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  body{
-    margin: 0; /* fjerner mellemrum fra elementer til kanten af siden*/
-    font-family: "Inter", sans-serif;
-    background-color: white;
-    padding: 2px;
+  body {
+    margin: 0; /* Fjerner standard margen */
+    font-family: "Inter", sans-serif; /* Bruger Inter-fonten */
+    background-color: white; /* Sætter baggrunden til hvid */
+    padding: 2px; /* Let padding omkring indhold */
   }
 
-  /* Hele headeren */
-  header{
-    background-color: #fff; /* Hvid baggrund for hele headeren */
+  /* Header med hvid baggrund */
+  header {
+    background-color: #fff;
   }
 
-  /* USP-bar øverst */
+  /* Øverste USP-bar med mørk baggrund og centreret hvid tekst */
   .USP-bar-ek {
-    background-color: #363433; /* Lys grå baggrund */
-    padding: 23px; /* Lidt indvendig luft omkring teksten */
-    text-align: center; /* Centrerer teksten vandret */
-    font-size: 0.9rem; /* Lidt mindre tekststørrelse end standard */
-    color: white; /* Mørk grå tekstfarve */
+    background-color: #363433;
+    padding: 23px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
   }
 
-  /* Container til logo og ikoner */
+  /* Container til logo og ikoner (søge, kurv, menu) */
   .header-indhold-ek {
-    display: flex; /* Lægger logo og ikoner vandret */
-    justify-content: space-between; /* Placerer logo til venstre, ikoner til højre */
-    align-items: center; /* Centrerer dem lodret */
-    padding: 1rem 2rem; /* Giver luft omkring indholdet */
-    background-color: white; /*baggrunds farve på header */
-  }
-
-  /* Logo-styling */
-  .logo-ek {
-    max-width: 150px; /* Begrænser logoets størrelse */
-    height: auto; /* Bevarer billedets proportioner */
-  }
-
-  /* Ikoncontainer */
-  .ikoner-ek {
-    display: flex; /* Viser ikonerne på en række */
-    gap: 1rem; /* Laver afstand mellem ikonerne */
-    font-size: 1.8rem; /* Gør ikonerne større end standardtekst */
-  }
-
-  /* styling på de 2 overskrifter */
-  .valg-ek{
-    display: flex; /* sætter dem på en række*/
-    justify-content: center; /* centrere elementerne*/
-    align-items: center; /* aligner elementeren med hinanden*/
-    gap: 2rem; /* mellemrummet mellem elementerne*/
+    display: flex;
+    justify-content: space-between; /* Logo til venstre, ikoner til højre */
+    align-items: center;
+    padding: 1rem 2rem;
     background-color: white;
-    margin-top: 2rem; /*mellemrum til toppen*/
+  }
+
+  /* Logo-styling – maks bredde og automatisk højde */
+  .logo-ek {
+    max-width: 150px;
+    height: auto;
+  }
+
+  /* Ikonsektion – horisontal række med afstand mellem ikoner */
+  .ikoner-ek {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.8rem; /* Gør ikonerne større */
+  }
+
+  /* Sektion med valgoverskrifter (f.eks. "Vælg farve" og "Farvelæg") */
+  .valg-ek {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: white;
+    margin-top: 2rem;
     margin-bottom: 20px;
   }
 
-  /* stregen imellem de 2 overskrifter*/
+  /* Lodret sort streg som opdeler de to overskrifter */
   .opdeler-ek {
-    width: 1px; /* Tynd streg */
-    align-self: stretch; /* stregen strækker sig, i forhold til de andre elementers højde */
-    background-color: black; /* sort streg */
+    width: 1px;
+    align-self: stretch; /* Fylder hele højden */
+    background-color: black;
   }
 
-  /* Understregning for den, der ikke er valgt */
+  /* Aktiv overskrift markeres med sort understregning */
   .valgt-ek {
-    border-bottom: 2px solid #000; /* Sort understregning */
-    padding-bottom: 0.2rem; /* Giver lidt luft mellem tekst og streg */
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.2rem;
   }
 
-  .ikke-valgt-ek{
-    font-weight: normal; /* gør fonten mindre tyk*/
+  /* Ikke-valgt overskrift har normal vægt (uden fed) */
+  .ikke-valgt-ek {
+    font-weight: normal;
   }
 
+  /* Container til hovedindhold med max bredde og centreret */
   .container {
     max-width: 400px;
     margin: 0 auto;
     padding: 3px;
   }
 
+  /* Sektion med billede og overlay */
   .image-section {
     position: relative;
   }
 
+  /* Billedet fylder hele containerens bredde */
   .room-image {
     width: 100%;
     display: block;
   }
 
+  /* Overlay med tekst og knapper placeret ovenpå billedet */
   .overlay {
     position: absolute;
     top: 20%;
@@ -110,11 +116,13 @@
     color: white;
   }
 
+  /* Styling af overskrift i overlay */
   .overlay h2 {
     margin-bottom: 20px;
     font-size: 20px;
   }
 
+  /* Knapper i overlayen – både link og button */
   .overlay-btn {
     display: block;
     width: 90%;
@@ -128,6 +136,7 @@
     text-decoration: none;
   }
 
+  /* Sektion til gemte farver */
   .saved-colors {
     margin-top: 20px;
   }
@@ -136,11 +145,13 @@
     margin-bottom: 10px;
   }
 
+  /* Container for en enkelt farveboks */
   .color-box {
     display: flex;
     align-items: center;
   }
 
+  /* Plus-knap til at tilføje farver */
   .add-color-btn {
     width: 75px;
     height: 75px;
@@ -151,6 +162,7 @@
     background-color: white;
   }
 
+  /* Knap til at se lignende farver */
   .see-similar-btn {
     width: 100%;
     padding: 20px;
@@ -161,6 +173,7 @@
     cursor: pointer;
   }
 
+  /* Knap til at gå til kurven (primær CTA) */
   .go-to-cart-btn {
     width: 100%;
     padding: 20px;
@@ -172,11 +185,13 @@
     cursor: pointer;
   }
 
+  /* Wrapper til knapper som fx “Skift billede” */
   .button-group {
     display: flex;
     justify-content: flex-end;
   }
 
+  /* Knappen “Skift billede” */
   .text-button {
     border: 1px solid #000;
     background: #fff;
@@ -187,17 +202,20 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto; /* Skubber knappen til højre */
   }
 
+  /* Hover-effekt til tekstknappen */
   .text-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
 </style>
+
 <body>
 
+<!-- Header med USP-bar og logo/ikoner -->
 <header>
   <div class="USP-bar-ek">
     <p>30 dages returret</p>
@@ -213,14 +231,14 @@
   </div>
 </header>
 
+<!-- Valg mellem "Vælg farve" og "Farvelæg" -->
 <div class="valg-ek">
   <h2 class="valgt-ek">Vælg farve</h2>
   <div class="opdeler-ek"></div>
   <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
 
-
-
+<!-- Billede med overlay med valgmuligheder (indendørs/udendørs) -->
 <div class="container">
   <div class="image-section">
     <img src="foto/Rectangle 53.jpg" alt="Room" class="room-image" />
@@ -231,10 +249,12 @@
     </div>
   </div>
 
+  <!-- Knap til at skifte billede -->
   <div class="button-group">
-  <button class="text-button">Skift billede</button>
+    <button class="text-button">Skift billede</button>
   </div>
 
+  <!-- Sektion med gemte farver -->
   <div class="saved-colors">
     <h3>Dine gemte farver</h3>
     <div class="color-box">
@@ -242,23 +262,20 @@
     </div>
   </div>
 
-  <button class="see-similar-btn">Se lignende farver </button>
+  <!-- Flere handlingsknapper -->
+  <button class="see-similar-btn">Se lignende farver</button>
   <button class="go-to-cart-btn">Gå til kurven</button>
   <button class="see-similar-btn">Gem dine farver</button>
 </div>
 
-
-
-
+<!-- Simpelt JS: viser en alert med valgt mulighed -->
 <script>
   function handleChoice(choice) {
-    alert(`Du valgte: ${choice}`);}
-
-
-
-
+    alert(`Du valgte: ${choice}`);
+  }
 </script>
 
-
 </body>
+
+
 </html>

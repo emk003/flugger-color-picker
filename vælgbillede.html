@@ -10,85 +10,89 @@
 </head>
 
 <style>
-  body{ /* fjerner mellemrum fra elementer til kanten af siden*/
-    font-family: "Inter", sans-serif;
-    background-color: white;
-    padding: 0;
-    margin: 0; /* ✅ Set to zero */
+
+
+  body {
+    font-family: "Inter", sans-serif; /* Bruger Inter-skrifttypen som standard */
+    background-color: white; /* Sætter en hvid baggrund for hele siden */
+    padding: 0; /* Fjerner indvendig luft omkring body */
+    margin: 0; /* Fjerner standardmargen fra browserens side */
   }
 
-  /* Hele headeren */
-  header{
-    background-color: #fff; /* Hvid baggrund for hele headeren */
+
+  header {
+    background-color: #fff; /* Hvid baggrund på hele headeren */
   }
 
-  /* USP-bar øverst */
+  /* Øverste USP-bar med tilbud/info */
   .USP-bar-ek {
-    background-color: #363433; /* Lys grå baggrund */
-    padding: 0.5rem 0.5rem; /* Lidt indvendig luft omkring teksten */
-    text-align: center; /* Centrerer teksten vandret */
-    font-size: 0.9rem; /* Lidt mindre tekststørrelse end standard */
-    color: white; /* Mørk grå tekstfarve */
+    background-color: #363433; /* Mørkegrå baggrund */
+    padding: 0.5rem 0.5rem; /* Indvendig luft */
+    text-align: center; /* Centrerer teksten horisontalt */
+    font-size: 0.9rem; /* Let reduceret tekststørrelse */
+    color: white; /* Hvid tekstfarve */
   }
 
   /* Container til logo og ikoner */
   .header-indhold-ek {
-    display: flex; /* Lægger logo og ikoner vandret */
-    justify-content: space-between; /* Placerer logo til venstre, ikoner til højre */
-    align-items: center; /* Centrerer dem lodret */
+    display: flex; /* Placerer børnene vandret */
+    justify-content: space-between; /* Logo til venstre, ikoner til højre */
+    align-items: center; /* Centrerer elementerne lodret */
     padding: 1rem 2rem; /* Giver luft omkring indholdet */
-    background-color: white; /*baggrunds farve på header */
+    background-color: white; /* Baggrund på headerens indhold */
   }
 
   /* Logo-styling */
   .logo-ek {
-    max-width: 150px; /* Begrænser logoets størrelse */
-    height: auto; /* Bevarer billedets proportioner */
+    max-width: 150px; /* Maks bredde for at sikre responsivitet */
+    height: auto; /* Automatisk højde for at bevare proportioner */
   }
 
-  /* Ikoncontainer */
+  /* Ikonlinje */
   .ikoner-ek {
-    display: flex; /* Viser ikonerne på en række */
-    gap: 1rem; /* Laver afstand mellem ikonerne */
-    font-size: 1.8rem; /* Gør ikonerne større end standardtekst */
+    display: flex; /* Viser ikoner på linje */
+    gap: 1rem; /* Afstand mellem ikoner */
+    font-size: 1.8rem; /* Gør ikonerne tydeligere */
   }
 
-  /* styling på de 2 overskrifter */
-  .valg-ek{
-    display: flex; /* sætter dem på en række*/
-    justify-content: center; /* centrere elementerne*/
-    align-items: center; /* aligner elementeren med hinanden*/
-    gap: 2rem; /* mellemrummet mellem elementerne*/
+  /* ----------- FARVEVALG-HEADER ----------- */
+
+  /* Wrapper til de to valgoverskrifter */
+  .valg-ek {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     background-color: white;
-    margin-top: 2rem; /*mellemrum til toppen*/
+    margin-top: 2rem; /* Luft over sektionen */
   }
 
-  /* stregen imellem de 2 overskrifter*/
+  /* Lodret streg mellem valgmuligheder */
   .opdeler-ek {
-    width: 1px; /* Tynd streg */
-    align-self: stretch; /* stregen strækker sig, i forhold til de andre elementers højde */
-    background-color: black; /* sort streg */
+    width: 1px; /* Tynd lodret streg */
+    align-self: stretch; /* Strækker sig i hele containerens højde */
+    background-color: black;
   }
 
-  /* Understregning for den, der ikke er valgt */
+  /* Den aktive/valgte overskrift */
   .valgt-ek {
-    border-bottom: 2px solid #000; /* Sort understregning */
-    padding-bottom: 0.2rem; /* Giver lidt luft mellem tekst og streg */
+    border-bottom: 2px solid #000; /* Understregning */
+    padding-bottom: 0.2rem; /* Luft mellem tekst og streg */
   }
 
-  .ikke-valgt-ek{
-    font-weight: normal; /* gør fonten mindre tyk*/
+  /* Den ikke-valgte overskrift */
+  .ikke-valgt-ek {
+    font-weight: normal; /* Normal tykkelse */
   }
 
-
-
-
+  /* ----------- BILLEDER OG FILTER ----------- */
 
   h2 {
     font-size: 22px;
     margin-bottom: 20px;
   }
 
+  /* Filterknap */
   .filter-button {
     border: 1px solid black;
     background-color: white;
@@ -101,47 +105,53 @@
     margin-bottom: 30px;
   }
 
+  /* Billedgalleri */
   .image-list img {
-    width: 90%;
+    width: 90%; /* Gør billeder næsten fulde i bredden */
     margin-left: 19px;
     height: auto;
     margin-bottom: 30px;
-    cursor: pointer;
+    cursor: pointer; /* Ændrer cursor til klikbar */
   }
 
+  /* Container med fast bredde */
   .container {
     max-width: 400px;
     margin: 0 auto;
   }
 
-  /* Slide-in bottom box */
+  /* ----------- SLIDE-IN BUND-BOKS ----------- */
+
+  /* Boksen, der vises, når billede vælges */
   .bottom-box {
     position: fixed;
-    bottom: -200px;
+    bottom: -200px; /* Skjules uden for skærmen */
     left: 0;
     width: 100%;
     background: white;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* Blød skygge for adskillelse */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px;
-    transition: bottom 0.3s ease-in-out;
-    z-index: 10;
+    transition: bottom 0.3s ease-in-out; /* Glidende animation */
+    z-index: 10; /* Vis ovenpå andet indhold */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 
+  /* Aktiverer bunden (gør den synlig) */
   .bottom-box.active {
     bottom: 0;
   }
 
+  /* Billedet i bunden */
   .bottom-box img {
     width: 80px;
     height: auto;
-
   }
 
+  /* Knap til at bruge billedet */
   .bottom-box button {
     background-color: #2333cc;
     color: white;
@@ -152,6 +162,7 @@
     font-weight: 500;
   }
 
+  /* Luk-knap i øverste hjørne af boksen */
   .bottom-box .close {
     position: absolute;
     top: 3px;
@@ -167,14 +178,16 @@
 
 <body>
 
+<!-- Header med USP-bar og logo/ikoner -->
 <header>
   <div class="USP-bar-ek">
-    <p>30 dages returret</p>
+    <p>30 dages returret</p> <!-- Kort salgsbudskab -->
   </div>
 
   <div class="header-indhold-ek">
-    <img class="logo-ek" src="fotos/logo.png" alt="logo">
+    <img class="logo-ek" src="fotos/logo.png" alt="logo"> <!-- Firmaets logo -->
     <div class="ikoner-ek">
+      <!-- FontAwesome ikoner -->
       <i class="fa-solid fa-magnifying-glass"></i>
       <i class="fa-solid fa-basket-shopping"></i>
       <i class="fa-solid fa-bars"></i>
@@ -182,15 +195,14 @@
   </div>
 </header>
 
+<!-- Valg mellem to funktioner -->
 <div class="valg-ek">
   <h2 class="valgt-ek">Vælg farve</h2>
   <div class="opdeler-ek"></div>
   <h2 class="ikke-valgt-ek">Farvelæg</h2>
 </div>
 
-
-
-
+<!-- Galleri og filterknap -->
 <div class="container">
   <h2>Vores billeder</h2>
   <button class="filter-button">
@@ -198,13 +210,14 @@
   </button>
 
   <div class="image-list">
+    <!-- Billeder der kan vælges -->
     <img src="foto/Rectangle 70.png" alt="Stue" onclick="selectImage(this)">
     <img src="foto/Group 43.png" alt="Spisestue" onclick="selectImage(this)">
     <img src="foto/Group 45.png" alt="Køkken" onclick="selectImage(this)">
   </div>
 </div>
 
-<!-- Bottom slide-in box -->
+<!-- Slide-in boksen der vises, når billede vælges -->
 <div class="bottom-box" id="bottomBox">
   <button class="close" onclick="closeBox()">✕</button>
   <img id="selectedImage" src="" alt="Valgt billede">
@@ -213,23 +226,33 @@
   </a>
 </div>
 
+
 <script>
+  // Når brugeren klikker på et billede i galleriet
   function selectImage(imgElement) {
     const box = document.getElementById("bottomBox");
     const selectedImage = document.getElementById("selectedImage");
+
+    // Opdaterer billedet i slide-in boksen
     selectedImage.src = imgElement.src;
+
+    // Gør boksen synlig ved at tilføje klassen 'active'
     box.classList.add("active");
   }
 
+  // Lukker slide-in boksen
   function closeBox() {
     document.getElementById("bottomBox").classList.remove("active");
   }
 
+  // Ekstra funktion hvis man vil gemme/videregive valgt billede
   function useImage() {
     const selectedImageSrc = document.getElementById("selectedImage").src;
     alert("Billedet er valgt: " + selectedImageSrc);
-    // Her kan du sende det videre, gemme det, eller navigere videre
+
+    // Her kan du sende billedet videre til backend, localStorage eller en ny side
   }
+
 </script>
 
 
