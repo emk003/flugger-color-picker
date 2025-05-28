@@ -298,72 +298,94 @@
     }
 
 
+
+    /* Knap: "Se lignende billeder" */
     .see-similar-btn-ej {
-      width: 92%;
-      padding: 17px;
-      margin: 20px 0;
-      border: 1px solid black;
-      background-color: white;
-      font-size: 16px;
-      cursor: pointer;
+      width: 92%; /* Knap fylder næsten hele containerens bredde */
+      padding: 17px; /* Indvendig luft – gør knappen stor og klikbar */
+      margin: 20px 0; /* Lodret afstand over og under knappen */
+      border: 1px solid black; /* Sort kant omkring knappen */
+      background-color: white; /* Hvid baggrund */
+      font-size: 16px; /* Standard tekststørrelse */
+      cursor: pointer; /* Markør ændres til hånd ved hover */
     }
 
+
+
+    /* Knapgruppe (f.eks. gem / del) */
     .ej-button-group {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
+      display: flex; /* Lægger knapperne i en række */
+      justify-content: flex-end; /* Justerer knapperne til højre */
+      gap: 10px; /* Afstand mellem knapper */
+      margin-top: 20px; /* Luft over gruppen */
     }
 
+
+    /* Generel styling til både ikon- og tekstknapper */
     .ej-icon-button,
     .ej-text-button {
-      border: 1px solid #000;
-      background: #fff;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid #000; /* Sort kant */
+      background: #fff; /* Hvid baggrund */
+      padding: 8px 12px; /* Indvendig luft omkring tekst/ikon */
+      cursor: pointer; /* Klikbart */
+      font-size: 16px; /* Standard tekststørrelse */
+      display: flex; /* Gør det muligt at centrere indholdet */
+      align-items: center; /* Vertikal centrering */
+      justify-content: center; /* Horisontal centrering */
+      text-decoration: none; /* Ingen understregning (selv hvis det er et link) */
+    }
+
+
+
+    /* Fjern understregning på alle links */
+    a {
       text-decoration: none;
     }
 
-    a{
-      text-decoration: none;
-    }
 
+
+    /* Pop-up container (modal overlay) */
     .ej-popup {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-      position: absolute;
+      opacity: 0; /* Usynlig som standard */
+      pointer-events: none; /* Kan ikke klikkes når skjult */
+      transition: opacity 0.4s ease; /* Blød overgang ved visning */
+      position: absolute; /* Ligger ovenpå resten af siden */
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgb(255, 255, 255);
-      z-index: 10;
-      display: flex;
+      background-color: rgb(255, 255, 255); /* Hvid overlay */
+      z-index: 10; /* Ligger øverst */
+      display: flex; /* Centrerer indholdet */
       justify-content: center;
       align-items: center;
     }
 
+
+
+    /* Synlig pop-up (når aktiv klasse tilføjes) */
     .ej-popup.ej-visible {
-      opacity: 1;
-      pointer-events: auto;
+      opacity: 1; /* Gør pop-up synlig */
+      pointer-events: auto; /* Tillader klik */
     }
 
+
+
+    /* Indhold i pop-up */
     .ej-popup-content {
-      max-width: 90%;
-      max-height: 90%;
-      width: auto;
+      max-width: 90%; /* Undgår at det fylder hele skærmen */
+      max-height: 90%; /* Undgår at det fylder hele skærmen */
+      width: auto; /* Tilpasser sig indholdet */
       height: auto;
     }
 
+
+
+    /* Ikon-knap med billede */
     .ej-icon-button img {
-      width: 19px;
+      width: 19px; /* Standard ikonstørrelse */
       height: 19px;
-      object-fit: contain;
+      object-fit: contain; /* Bevarer proportioner og undgår beskæring */
     }
 
 
@@ -400,81 +422,105 @@
       font-weight: bold;
     }
 
+
+    /* Lukkeikon: hover-effekt */
     .close:hover,
     .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    #myBtn1{
-      width: 92%;
-      padding: 17px;
-      background-color: #2333cc;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
+      color: black; /* Skifter farven til sort ved hover eller fokus */
+      text-decoration: none; /* Fjerner evt. understregning */
+      cursor: pointer; /* Gør det tydeligt at elementet er klikbart */
     }
 
 
+
+    /* (åbn modal) knap */
+    #myBtn1 {
+      width: 92%; /* Knap fylder næsten hele bredden */
+      padding: 17px; /* Indvendig afstand – gør knappen større */
+      background-color: #2333cc; /* Blå baggrund */
+      color: white; /* Hvid tekst */
+      font-size: 16px; /* Mellemstor tekst */
+      font-weight: bold; /* Fed skrift for tydelighed */
+      border: none; /* Fjerner standardramme */
+      cursor: pointer; /* Gør det klart at det er en klikbar knap */
+    }
+
+
+    /* Modal-indhold */
     .modal-content-ej {
-      background: white;
-      padding: 4rem;
-      margin-top: 150px;
-      border-radius: 1px;
-      max-width: 250px;
-      width: 90%;
-      text-align: center;
-      font-family: sans-serif;
+      background: white; /* Hvid baggrund for modalens indhold */
+      padding: 4rem; /* God luft omkring indholdet */
+      margin-top: 150px; /* Skubber modal lidt ned fra toppen */
+      border-radius: 1px; /* Minimal runding af hjørner */
+      max-width: 250px; /* Maksimal bredde – forhindrer den i at blive for bred */
+      width: 90%; /* Fylder 90% af den tilgængelige plads */
+      text-align: center; /* Centrerer tekst og elementer */
+      font-family: sans-serif; /* En moderne, ren skrifttype */
     }
 
+
+
+    /* Farvevalgslinje i modal */
     .color-item-ej {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #ddd;
+      display: flex; /* Lægger elementerne ved siden af hinanden */
+      align-items: center; /* Centrerer dem lodret */
+      justify-content: space-between; /* Placerer elementer yderst til venstre og højre */
+      gap: 0.75rem; /* Luft mellem elementer */
+      padding: 0.5rem 0; /* Lodret luft */
+      border-bottom: 1px solid #ddd; /* Lys grå skillelinje mellem farver */
     }
 
+
+
+    /* Lille farveprøve (swatch) */
     .color-swatch-ej {
-      width: 40px;
-      height: 40px;
-      border-radius: 1px;
+      width: 40px;  /* Bredde på farveprøve */
+      height: 40px; /* Højde på farveprøve */
+      border-radius: 1px; /* Let afrunding */
     }
 
+
+
+    /* Skraldespandsikon til sletning */
     .trash-icon {
-      cursor: pointer;
-      font-size: 18px;
+      cursor: pointer; /* Gør det tydeligt at man kan klikke */
+      font-size: 18px; /* Gør ikonet passende stort */
     }
 
+
+    /* Container til modalens to knapper */
     .modal-buttons-ej {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-      gap: 1rem;
+      display: flex; /* Viser knapperne på række */
+      justify-content: space-between; /* Placerer dem i hver sin side */
+      margin-top: 1.5rem; /* Luft over knapperne */
+      gap: 1rem; /* Luft mellem knapper */
     }
 
+
+    /* Generel styling for begge knapper */
     .modal-btn-ej {
-      flex: 1;
-      padding: 12px;
+      flex: 1; /* Gør at begge knapper fylder lige meget */
+      padding: 12px; /* Indvendig afstand for komfortabel klikstørrelse */
       font-size: 16px;
       cursor: pointer;
-      border: none;
+      border: none; /* Fjerner standardramme */
     }
 
+
+
+    /* Annullér-knap (neutral stil) */
     .modal-btn-ej.cancel {
-      background: white;
-      border: 1px solid black;
+      background: white; /* Hvid baggrund */
+      border: 1px solid black; /* Sort kant */
     }
 
+
+
+    /* Bekræft-knap (primær handling) */
     .modal-btn-ej.confirm {
-      background: #1D3CE5;
-      color: white;
+      background: #1D3CE5; /* Blå baggrund */
+      color: white; /* Hvid tekst */
     }
-
 
 
 
